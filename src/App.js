@@ -1,12 +1,12 @@
 import React from 'react'
+import { Route } from 'wouter'
+import Layout from './components/Layout'
+import Home from './pages/Home'
 
 export default function App() {
   return (
-    <div>
-      <p>Esta es la aplicación</p>
-      <ul>
-        <li>Hola mundo</li>
-      </ul>
-    </div>
+    <Layout>
+      <Route path='/' component={Home} />
+    </Layout>
   )
 }
