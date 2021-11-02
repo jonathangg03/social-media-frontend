@@ -1,5 +1,6 @@
 import React from 'react'
 import Hero from '../../components/Hero'
+import IdeasList from '../../components/IdeasList'
 
 const mockProfile = {
   profilePicture:
@@ -10,6 +11,33 @@ const mockProfile = {
   description: 'Esto es tu descripción'
 }
 
+const IDEAS = [
+  {
+    name: 'Jonathan García González',
+    content: 'Esto es una idea nueva',
+    date: 'Hace 12 horas',
+    _id: 1
+  },
+  {
+    name: 'Jonathan García González',
+    content: 'Esto es una idea nueva',
+    date: 'Hace 12 horas',
+    _id: 2
+  },
+  {
+    name: 'Jonathan García González',
+    content: 'Esto es una idea nueva',
+    date: 'Hace 12 horas',
+    _id: 3
+  },
+  {
+    name: 'Jonathan García González',
+    content: 'Esto es una idea nueva',
+    date: 'Hace 12 horas',
+    _id: 4
+  }
+]
+
 export default function Profile({ params }) {
   return (
     <div>
@@ -19,6 +47,7 @@ export default function Profile({ params }) {
         name={mockProfile.name}
         description={mockProfile.description}
       />
+      <IdeasList ideas={IDEAS} />
     </div>
   )
 }

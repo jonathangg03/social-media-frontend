@@ -1,0 +1,27 @@
+.idea {
+  border-bottom: 1px solid gray;
+  padding: 15px 20px 30px;
+  position: relative;
+
+  h3 {
+    font-size: 17px;
+  }
+
+  &__options {
+    position: absolute;
+    top: 0;
+    right: 10px;
+  }
+
+  &__content {
+    font-size: 15px;
+    padding-top: 3px;
+  }
+
+  &__date {
+    color: gray;
+    font-size: 12px;
+    position: absolute;
+    bottom: 5px;
+  }
+}
