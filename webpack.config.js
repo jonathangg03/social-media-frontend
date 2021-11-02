@@ -1,4 +1,45 @@
 const path = require('path')
-const miniCssExtractPlugin = require('mini-css-extract-plugin')
-const htmlWebpackPlugin = require('html-webpack-plugin')
-const webackDevServer = require('webpack-dev-server')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/'
+  },
+  resolve: {
+    extensions: ['.js']
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      },
+      {
+        test: /.html$/,
+        use: 'html-loader'
+      },
+      {
+        test: /.(scss|css)$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+      }
+    ]
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname, 'public/index.html'),
+      filename: 'index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'styles/[name].css'
+    })
+  ],
+  devServer: {
+    port: 3000,
+    historyApiFallback: true
+  }
+}
