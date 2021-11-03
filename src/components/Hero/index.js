@@ -10,20 +10,18 @@ export default function Hero({
   description
 }) {
   return (
-    <div className='profile'>
-      <div className='profile__background-picture'>
+    <div className='hero'>
+      <div className='hero__background-picture'>
         <img src={backgroundPicture} alt={`${name} background picture`} />
       </div>
-      <div className='profile__information'>
-        <div className='profile__information-top'>
-          <div className='profile__information-picture'>
-            <img src={profilePicture} alt={name} />
-          </div>
-          <h2>{name}</h2>
+      <div className='hero__information'>
+        <div className='hero__information-picture'>
+          <img src={profilePicture} alt={name} />
         </div>
+        <h2>{name}</h2>
         <h4>{description}</h4>
       </div>
-      <div className='profile__edit'>
+      <div className='hero__edit'>
         <Link to='/'>
           <FaPen />
         </Link>

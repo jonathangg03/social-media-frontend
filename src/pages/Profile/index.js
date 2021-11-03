@@ -1,6 +1,9 @@
 import React from 'react'
 import Hero from '../../components/Hero'
 import IdeasList from '../../components/IdeasList'
+import './index.scss'
+
+//diseños: https://creativemarket.com/evatheme/2144499-Collector-iOS-Wireframe-UI-Kit?utm_source=Pinterest&utm_medium=CM+Social+Share&utm_campaign=Product+Social+Share&utm_content=Collector+iOS+Wireframe+UI+Kit&ts=201910&epik=dj0yJnU9ODZOTFBiN3d4ZjNvcG1WckUxSXNQbjFVTDkxY0U0aUQmcD0wJm49TzZKSmZmZkEtVTJibUk1aVZmY1ZiUSZ0PUFBQUFBR0dDdlJ3
 
 const mockProfile = {
   profilePicture:
@@ -40,7 +43,7 @@ const IDEAS = [
 
 export default function Profile({ params }) {
   return (
-    <div>
+    <div className='profile'>
       <Hero
         profilePicture={mockProfile.profilePicture}
         backgroundPicture={mockProfile.background}
