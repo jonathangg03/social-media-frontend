@@ -1,11 +1,20 @@
 import React from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
 import Logo from '../../components/Logo'
-
+import { useLocation } from 'wouter'
+import '../../styles/home.scss'
 import './index.scss'
 
 export default function Home() {
-  const { loginWithRedirect } = useAuth0()
+  const [location, setLocation] = useLocation()
+
+  const onClickLog = (e) => {
+    if (e.target.textContent === 'Registrarme') {
+      setLocation('/sign-up')
+    }
+    if (e.target.textContent === 'Ingresar') {
+      setLocation('/sign-in')
+    }
+  }
 
   return (
     <div className='home'>
@@ -20,19 +29,11 @@ export default function Home() {
         <div className='home__content-description'>
           <h1>¡Comparte tus ideas con el mundo!</h1>
           <div className='home__content-description-buttons'>
-            <button onClick={loginWithRedirect}>Ingresar</button>
+            <button onClick={onClickLog}>Registrarme</button>
+            <button onClick={onClickLog}>Ingresar</button>
           </div>
         </div>
       </section>
     </div>
   )
 }
-
-/*Se hace similar con el logout.pero con el elemento logout del mismo hook*/
-/*
-Del mismo hook podemos sacar:
-  .isAuthenticated: Saber sí está autenticado.
-  .isLoading: Sí está cargando la solicitud.
-  .user: Contiene toda la información del usuario: picture, name, email...
-
-*/
