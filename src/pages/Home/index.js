@@ -1,12 +1,9 @@
-import React from 'react'
-import { useAuth0 } from '@auth0/auth0-react'
+import React, { useState } from 'react'
+import Start from '../Start'
+import Main from '../Main'
 
 export default function Home() {
-  const { logout } = useAuth0()
-  return (
-    <div>
-      <h1>Estamos logueados</h1>
-      <button onClick={logout}>Deslogueo</button>
-    </div>
-  )
+  const [auth, setAuth] = useState(localStorage.getItem('auth'))
+
+  return <>{auth ? <Start /> : <Main />}</>
 }
