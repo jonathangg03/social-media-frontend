@@ -12,7 +12,7 @@ export default function App() {
     <>
       <Route path='/' component={Main} />
       <Route path='/home' component={Start} />
-      <Route path='/profile/:id' component={Profile} />
+      <Route path='/:id/profile' component={Profile} />
       <Route path='/sign-up' component={SignUp} />
       <Route path='/sign-in' component={SignIn} />
     </>

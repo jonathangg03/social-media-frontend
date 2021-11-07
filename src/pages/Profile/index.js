@@ -16,27 +16,27 @@ const mockProfile = {
 
 const IDEAS = [
   {
-    name: 'Jonathan García González',
+    title: 'Título de la nota',
     content: 'Esto es una idea nueva',
-    date: 'Hace 12 horas',
+    date: '2 de Marzo del 2020',
     _id: 1
   },
   {
-    name: 'Jonathan García González',
+    title: 'Título de la nota',
     content: 'Esto es una idea nueva',
-    date: 'Hace 12 horas',
+    date: '2 de Marzo del 2020',
     _id: 2
   },
   {
-    name: 'Jonathan García González',
+    title: 'Título de la nota',
     content: 'Esto es una idea nueva',
-    date: 'Hace 12 horas',
+    date: '2 de Marzo del 2020',
     _id: 3
   },
   {
-    name: 'Jonathan García González',
+    title: 'Título de la nota',
     content: 'Esto es una idea nueva',
-    date: 'Hace 12 horas',
+    date: '2 de Marzo del 2020',
     _id: 4
   }
 ]

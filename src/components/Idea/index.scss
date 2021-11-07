@@ -1,27 +1,49 @@
+@import '../../styles/variables.scss';
+
 .idea {
-  border-bottom: 1px solid gray;
-  padding: 15px 20px 30px;
+  border-bottom: 2px solid #7c8eaa2b;
+  padding: 30px 20px 15px;
   position: relative;
 
   h3 {
     font-size: 17px;
+    letter-spacing: 1px;
+    text-align: center;
+    color: $secondGradientColor;
   }
 
   &__options {
     position: absolute;
-    top: 0;
+    top: 15px;
     right: 10px;
+    color: $secondGradientColor;
   }
 
   &__content {
-    font-size: 15px;
-    padding-top: 3px;
+    font-size: 13px;
+    padding-top: 8px;
+    color: $textColor;
   }
 
   &__date {
     color: gray;
     font-size: 12px;
-    position: absolute;
-    bottom: 5px;
+    font-weight: 100;
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  &__friends-options {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    button {
+      color: gray;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      border: none;
+      background-color: transparent;
+    }
   }
 }
