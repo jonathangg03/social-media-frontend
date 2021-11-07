@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Logo from '../../components/Logo'
 import { useLocation } from 'wouter'
 import '../../styles/home.scss'
@@ -15,6 +15,13 @@ export default function Home() {
       setLocation('/sign-in')
     }
   }
+
+  useEffect(() => {
+    //Para redirigir a home sí hay un auth en localStorage
+    if (localStorage.getItem('auth')) {
+      setLocation('/home')
+    }
+  }, [])
 
   return (
     <div className='home'>

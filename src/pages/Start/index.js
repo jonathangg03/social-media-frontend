@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useLocation } from 'wouter'
 
 export default function Home() {
@@ -6,8 +6,16 @@ export default function Home() {
 
   const logout = () => {
     localStorage.removeItem('auth')
-    setLocation('/home')
+    setLocation('/')
   }
+
+  useEffect(() => {
+    //Para redirigir a / sí no hay un auth en localStorage
+    if (!localStorage.getItem('auth')) {
+      setLocation('/')
+    }
+  }, [])
+
   return (
     <div>
       <h1>Estamos logueados</h1>

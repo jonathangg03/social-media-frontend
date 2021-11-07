@@ -31,7 +31,7 @@ export default function () {
 
     if (email === emailV && password === passV) {
       localStorage.setItem('auth', true)
-      setLocation('/')
+      setLocation('/home')
     } else {
       alert('Usuario o contraseña incorrectos')
     }
