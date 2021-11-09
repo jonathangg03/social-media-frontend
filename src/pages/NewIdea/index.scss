@@ -1,0 +1,59 @@
+@import '../../styles/variables.scss';
+
+.newIdea {
+  padding: 20px;
+  img {
+    width: 85px;
+    height: 85px;
+    border-radius: 50px;
+    margin-bottom: 35px;
+  }
+  form {
+    .newIdea__content-container {
+      position: relative;
+      textarea {
+        width: 100%;
+        min-height: 350px;
+        resize: none;
+        background-color: $blue;
+        border: none;
+        position: relative;
+        padding: 15px 20px;
+        color: white;
+        font-family: $fontMain;
+        font-size: 18px;
+        outline: none;
+        border-radius: 10px;
+      }
+
+      textarea::placeholder {
+        color: white;
+        font-size: 16px;
+      }
+    }
+    .newIdea__content-container::after {
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: -65px;
+      position: absolute;
+      border: 35px solid transparent;
+      border-bottom-color: $blue;
+    }
+
+    button {
+      background-color: $blue;
+      font-size: 17px;
+      margin-top: 10px;
+    }
+  }
+}
+
+.textA::after {
+  content: 'df';
+  width: 10px;
+  height: 10px;
+  color: black;
+  position: absolute;
+  top: 0;
+}

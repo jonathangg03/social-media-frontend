@@ -6,6 +6,7 @@ import Start from './pages/Start'
 import Profile from './pages/Profile'
 import SignUp from './pages/Sign-up'
 import SignIn from './pages/Sign-in'
+import NewIdea from './pages/NewIdea'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Route path='/:id/profile' component={Profile} />
       <Route path='/sign-up' component={SignUp} />
       <Route path='/sign-in' component={SignIn} />
+      <Route path='/:id/newIdea' component={NewIdea} />
     </>
   )
 }
