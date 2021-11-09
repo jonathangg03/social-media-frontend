@@ -52,7 +52,6 @@ export default function Profile({ params }) {
         description={mockProfile.description}
       />
       <IdeasList ideas={IDEAS} />
-
       <Options />
     </div>
   )
