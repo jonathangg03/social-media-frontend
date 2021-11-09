@@ -18,12 +18,15 @@
   &__information {
     position: absolute;
     width: 100%;
-    top: 25%;
+    height: 100%;
+    top: 0;
     color: white;
     padding: 0 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.26);
     h2 {
       font-size: 18px;
       margin: 5px 0;
@@ -48,7 +51,7 @@
     position: absolute;
     bottom: 15px;
     right: 15px;
-    color: $secondGradientColor;
-    font-size: 18px;
+    color: $lightOrange;
+    font-size: 22px;
   }
 }
