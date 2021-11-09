@@ -14,13 +14,15 @@ export default function () {
   const emailInput = useInputValue({
     value: '',
     name: 'email',
-    type: 'email'
+    type: 'email',
+    placeholder: 'Correo electronico'
   })
 
   const passwordInput = useInputValue({
     value: '',
     name: 'password',
-    type: 'password'
+    type: 'password',
+    placeholder: 'Contraseña'
   })
 
   const handleSubmit = (e) => {
@@ -39,14 +41,8 @@ export default function () {
 
   return (
     <form onSubmit={handleSubmit} className='formSignUp'>
-      <label>
-        <p>Correo electrónico:</p>
-        <input {...emailInput} />
-      </label>
-      <label>
-        <p>Contraseña:</p>
-        <input {...passwordInput} />
-      </label>
+      <input {...emailInput} />
+      <input {...passwordInput} />
       <button>Ingresar</button>
     </form>
   )

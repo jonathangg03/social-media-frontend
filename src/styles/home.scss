@@ -1,3 +1,6 @@
+@import '../styles/mixins.scss';
+@import '../styles/variables.scss';
+
 .home {
   position: relative;
   &__img-bg {
@@ -12,9 +15,11 @@
   }
   h1 {
     text-align: center;
-    font-size: 25px;
+    font-size: 35px;
+    line-height: 45px;
     color: white;
     margin-bottom: 30px;
+    font-weight: 400;
   }
 
   &__content {
@@ -24,17 +29,7 @@
     min-height: 100vh;
     width: 100%;
     padding: 10px 10px 30px;
-    background: #4776e6; /* fallback for old browsers */
-    background: -webkit-linear-gradient(
-      to right,
-      #8e54e9e3,
-      #4776e6e3
-    ); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(
-      to right,
-      #8e54e9e3,
-      #4776e6e3
-    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    @include mainGradient();
 
     &-description {
       width: 100%;
@@ -49,7 +44,7 @@
       color: white;
       margin-top: 30px;
       a {
-        color: #15d798;
+        color: $lightOrange;
         text-decoration: none;
         font-weight: 700;
       }

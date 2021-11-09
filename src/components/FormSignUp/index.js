@@ -10,20 +10,16 @@ export default function () {
   return (
     <form onSubmit={handleSubmit} className='formSignUp'>
       <label>
-        <p>Nombre completo:</p>
-        <input type='text' name='name' />
+        <input type='text' name='name' placeholder='Nombre completo' />
       </label>
       <label>
-        <p>Edad:</p>
-        <input type='number' name='age' />
+        <input type='number' name='age' placeholder='Edad' />
       </label>
       <label>
-        <p>Correo electrónico:</p>
-        <input type='email' name='email' />
+        <input type='email' name='email' placeholder='Correo electronico' />
       </label>
       <label>
-        <p>Contraseña:</p>
-        <input type='password' name='password' />
+        <input type='password' name='password' placeholder='Contraseña' />
       </label>
       <button>Registrarse</button>
     </form>

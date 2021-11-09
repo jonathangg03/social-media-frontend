@@ -1,5 +1,17 @@
+@import './variables.scss';
+
 @mixin darkShadow($color: rgba(0, 0, 0, 0.28)) {
   -webkit-box-shadow: 1px 3px 5px 1px $color;
   box-shadow: 1px 3px 5px 1px $color;
   -moz-box-shadow: 1px 3px 5px 1px $color;
+}
+
+@mixin mainGradient($firstColor: #0084ffe3, $secondColor: #ff8400e3) {
+  background: $firstColor; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    $firstColor,
+    $secondColor
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, $firstColor, $secondColor);
 }
