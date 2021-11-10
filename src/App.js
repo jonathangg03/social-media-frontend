@@ -8,6 +8,7 @@ import SignIn from './pages/Sign-in'
 import NewIdea from './pages/NewIdea'
 import NotFound from './pages/NotFound'
 import Liked from './pages/Liked'
+import EditProfile from './pages/EditProfile'
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Route path='/' component={Main} />
       <Route path='/home' component={Start} />
       <Route path='/:id/profile' component={Profile} />
+      <Route path='/:id/profile/edit' component={EditProfile} />
       <Route path='/:id/liked' component={Liked} />
       <Route path='/sign-up' component={SignUp} />
       <Route path='/sign-in' component={SignIn} />
