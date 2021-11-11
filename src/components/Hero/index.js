@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaPen } from 'react-icons/fa'
-import { Link } from 'wouter'
+import { Link } from 'react-router-dom'
 import './hero.scss'
 
 export default function Hero({

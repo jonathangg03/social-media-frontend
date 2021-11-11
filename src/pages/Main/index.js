@@ -1,26 +1,26 @@
 import React, { useEffect } from 'react'
 import Logo from '../../components/Logo'
-import { useLocation } from 'wouter'
+import { useNavigate } from 'react-router-dom'
 import Mountains from '../../../public/mountains.jpg'
 import '../../styles/home.scss'
 import './main.scss'
 
 export default function Home() {
-  const [location, setLocation] = useLocation()
+  const navigate = useNavigate()
 
   const onClickLog = (e) => {
     if (e.target.textContent === 'Registrarme') {
-      setLocation('/sign-up')
+      navigate('/sign-up')
     }
     if (e.target.textContent === 'Ingresar') {
-      setLocation('/sign-in')
+      navigate('/sign-in')
     }
   }
 
   useEffect(() => {
     //Para redirigir a home sí hay un auth en localStorage
     if (localStorage.getItem('auth')) {
-      setLocation('/home')
+      navigate('/home')
     }
   }, [])
 

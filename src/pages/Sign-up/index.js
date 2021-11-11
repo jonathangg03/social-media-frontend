@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'wouter'
+import { Link } from 'react-router-dom'
 import Logo from '../../components/Logo'
 import FormSignUp from '../../components/FormSignUp'
 import Mountains from '../../../public/mountains.jpg'

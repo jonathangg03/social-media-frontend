@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'wouter'
+import { useNavigate } from 'react-router-dom'
 import './newIdea.scss'
 
 const mockProfile = {
@@ -9,11 +9,11 @@ const mockProfile = {
 }
 
 export default function NewIdea() {
-  const [location, setLocation] = useLocation()
+  const navigate = useNavigate()
 
   const handleSumbitItea = (e) => {
     e.preventDefault()
-    setLocation('/2/profile')
+    navigate('/2/profile')
   }
   return (
     <div className='newIdea'>

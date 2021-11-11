@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'wouter'
+import { Link } from 'react-router-dom'
 import NotFoundImage from '../../../public/404.png'
 import Logo from '../../components/Logo'
 import './notFound.scss'

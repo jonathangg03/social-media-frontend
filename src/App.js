@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'wouter'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Main from './pages/Main'
 import Start from './pages/Start'
 import Profile from './pages/Profile'
@@ -12,16 +12,18 @@ import EditProfile from './pages/EditProfile'
 
 export default function App() {
   return (
-    <Switch>
-      <Route path='/' component={Main} />
-      <Route path='/home' component={Start} />
-      <Route path='/:id/profile' component={Profile} />
-      <Route path='/:id/profile/edit' component={EditProfile} />
-      <Route path='/:id/liked' component={Liked} />
-      <Route path='/sign-up' component={SignUp} />
-      <Route path='/sign-in' component={SignIn} />
-      <Route path='/:id/newIdea' component={NewIdea} />
-      <Route component={NotFound} />
-    </Switch>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Main />} />
+        <Route path='/home' element={<Start />} />
+        <Route path='/:id/profile' element={<Profile />} />
+        <Route path='/:id/profile/edit' element={<EditProfile />} />
+        <Route path='/:id/liked' element={<Liked />} />
+        <Route path='/sign-up' element={<SignUp />} />
+        <Route path='/sign-in' element={<SignIn />} />
+        <Route path='/:id/newIdea' element={<NewIdea />} />
+        <Route component={<NotFound />} />
+      </Routes>
+    </BrowserRouter>
   )
 }

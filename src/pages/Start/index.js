@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react'
-import { useLocation } from 'wouter'
+import { useNavigate } from 'react-router-dom'
 
 export default function Home() {
-  const [location, setLocation] = useLocation()
+  const navigate = useNavigate()
 
   const logout = () => {
     localStorage.removeItem('auth')
-    setLocation('/')
+    navigate('/')
   }
 
   useEffect(() => {
     //Para redirigir a / sí no hay un auth en localStorage
     if (!localStorage.getItem('auth')) {
-      setLocation('/')
+      navigate('/')
     }
   }, [])
 

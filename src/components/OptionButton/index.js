@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'wouter'
+import { Link } from 'react-router-dom'
 import './optionButton.scss'
 
 export default function OptionButton({ Icon, uri, type }) {

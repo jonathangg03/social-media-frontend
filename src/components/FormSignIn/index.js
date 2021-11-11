@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLocation } from 'wouter'
+import { useNavigate } from 'react-router-dom'
 import useInputValue from '../../hooks/useInputValue'
 import '../../styles/forms.scss'
 
@@ -9,7 +9,7 @@ const default_user = {
 }
 
 export default function () {
-  const [location, setLocation] = useLocation()
+  const navigate = useNavigate()
 
   const emailInput = useInputValue({
     value: '',
@@ -33,7 +33,7 @@ export default function () {
 
     if (email === emailV && password === passV) {
       localStorage.setItem('auth', true)
-      setLocation('/home')
+      navigate('/2/profile')
     } else {
       alert('Usuario o contraseña incorrectos')
     }
