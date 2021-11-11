@@ -3,7 +3,7 @@ import { FaUserPlus, FaUser, FaPlus, FaHeart } from 'react-icons/fa'
 import { BsGrid3X2GapFill, BsXLg } from 'react-icons/bs'
 
 import OptionButton from '../OptionButton'
-import './index.scss'
+import './options.scss'
 
 export default function Options() {
   const optionsRef = useRef()

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation } from 'wouter'
-import './index.scss'
+import './newIdea.scss'
 
 const mockProfile = {
   profilePicture:

@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaPen } from 'react-icons/fa'
 import { Link } from 'wouter'
-import './index.scss'
+import './hero.scss'
 
 export default function Hero({
   profilePicture,

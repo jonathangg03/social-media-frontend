@@ -1,6 +1,6 @@
 import React from 'react'
 import Idea from '../Idea'
-import './index.scss'
+import './ideaList.scss'
 
 export default function IdeaList({ ideas }) {
   return (

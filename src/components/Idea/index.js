@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaEllipsisH, FaHeart } from 'react-icons/fa'
-import './index.scss'
+import './idea.scss'
 
 export default function Idea({ title, content, date }) {
   return (

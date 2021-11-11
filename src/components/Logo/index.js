@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'wouter'
 import { FaLightbulb } from 'react-icons/fa'
-import './index.scss'
+import './logo.scss'
 
 export default function Logo({ black }) {
   return (

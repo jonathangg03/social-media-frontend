@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'wouter'
 import NotFoundImage from '../../../public/404.png'
 import Logo from '../../components/Logo'
-import './index.scss'
+import './notFound.scss'
 
 export default function NotFound() {
   return (

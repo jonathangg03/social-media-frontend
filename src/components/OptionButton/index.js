@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'wouter'
-import './index.scss'
+import './optionButton.scss'
 
 export default function OptionButton({ Icon, uri, type }) {
   return (

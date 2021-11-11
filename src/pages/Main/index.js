@@ -3,7 +3,7 @@ import Logo from '../../components/Logo'
 import { useLocation } from 'wouter'
 import Mountains from '../../../public/mountains.jpg'
 import '../../styles/home.scss'
-import './index.scss'
+import './main.scss'
 
 export default function Home() {
   const [location, setLocation] = useLocation()
