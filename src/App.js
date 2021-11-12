@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Main from './pages/Main'
 import Start from './pages/Start'
 import Profile from './pages/Profile'
@@ -15,14 +15,14 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='/home' element={<Start />} />
+        {/* <Route path='/home' element={<Start />} />
         <Route path='/:id/profile' element={<Profile />} />
         <Route path='/:id/profile/edit' element={<EditProfile />} />
-        <Route path='/:id/liked' element={<Liked />} />
-        <Route path='/sign-up' element={<SignUp />} />
-        <Route path='/sign-in' element={<SignIn />} />
-        <Route path='/:id/newIdea' element={<NewIdea />} />
-        <Route component={<NotFound />} />
+        <Route path='/:id/liked' element={<Liked />} /> */}
+        <Route path='sign-up' element={<SignUp />} />
+        {/* <Route path='sign-in' element={<SignIn />} /> */}
+        {/* <Route path='/:id/newIdea' element={<NewIdea />} />
+        <Route path='*' element={<NotFound />} /> */}
       </Routes>
     </BrowserRouter>
   )
