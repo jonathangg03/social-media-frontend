@@ -1,0 +1,24 @@
+@import '../../styles/variables.scss';
+
+.editProfile {
+  padding: 15px;
+  h2 {
+    text-align: center;
+    color: $blue;
+    padding-bottom: 20px;
+  }
+  a {
+    color: $blue;
+    text-decoration: none;
+
+    p {
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+      span {
+        padding-left: 5px;
+        font-weight: 700;
+      }
+    }
+  }
+}

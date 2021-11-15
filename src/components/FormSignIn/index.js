@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import useInputValue from '../../hooks/useInputValue'
 import '../../styles/forms.scss'

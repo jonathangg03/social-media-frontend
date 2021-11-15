@@ -22,7 +22,7 @@ export default function Hero({
         <h4>{description}</h4>
       </div>
       <div className='hero__edit'>
-        <Link to='/'>
+        <Link to='/2/profile/edit'>
           <FaPen />
         </Link>
       </div>
