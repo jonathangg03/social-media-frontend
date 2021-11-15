@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import Logo from '../../components/Logo'
 import { useNavigate } from 'react-router-dom'
-import Mountains from '../../../public/mountains.jpg'
-import '../../styles/home.scss'
 import './main.scss'
 
 export default function Home() {
@@ -26,9 +24,6 @@ export default function Home() {
 
   return (
     <div className='home'>
-      <div className='home__img-bg'>
-        <img src={Mountains} alt='background' />
-      </div>
       <section className='home__content'>
         <Logo />
         <div className='home__content-description'>

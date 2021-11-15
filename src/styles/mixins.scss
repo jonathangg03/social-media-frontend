@@ -6,7 +6,7 @@
   -moz-box-shadow: 1px 3px 5px 1px $color;
 }
 
-@mixin mainGradient($firstColor: #0084ffe3, $secondColor: #ff8400e3) {
+@mixin mainGradient($firstColor: #f1507ee3, $secondColor: #303947e3) {
   background: $firstColor; /* fallback for old browsers */
   background: -webkit-linear-gradient(
     to right,
