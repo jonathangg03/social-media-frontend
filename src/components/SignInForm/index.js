@@ -32,7 +32,7 @@ export default function () {
 
     if (email === emailV && password === passV) {
       localStorage.setItem('auth', true)
-      navigate('/2/profile')
+      navigate('/home')
     } else {
       alert('Usuario o contraseña incorrectos')
     }

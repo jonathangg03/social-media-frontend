@@ -1,7 +1,12 @@
-import React from 'react'
 import Start from '../Start'
 import Main from '../Main'
 
 export default function Home() {
-  return <>{localStorage.getItem('auth') ? <Start /> : <Main />}</>
+  if (!localStorage.getItem('auth')) {
+    return <Main />
+  }
+
+  if (localStorage.getItem('auth')) {
+    return <Start />
+  }
 }

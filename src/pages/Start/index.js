@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Menu from '../../components/Menu'
 
 export default function Home() {
   const navigate = useNavigate()
@@ -20,6 +21,7 @@ export default function Home() {
     <div>
       <h1>Estamos logueados</h1>
       <button onClick={logout}>Deslogueo</button>
+      <Menu />
     </div>
   )
 }

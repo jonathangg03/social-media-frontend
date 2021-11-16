@@ -6,29 +6,30 @@
   position: relative;
 
   h3 {
-    font-size: 18px;
-    letter-spacing: 1px;
+    font-size: 22px;
+    letter-spacing: 0px;
+    font-weight: 900;
     text-align: center;
-    color: $blue;
+    color: $light;
   }
 
   &__options {
     position: absolute;
     top: 15px;
     right: 10px;
-    color: $blue;
+    color: $light;
   }
 
   &__content {
-    font-size: 15px;
+    font-size: 16px;
     padding-top: 8px;
-    color: $textColor;
+    color: $light;
   }
 
   &__date {
-    color: gray;
-    font-size: 13px;
-    font-weight: 100;
+    color: $main;
+    font-size: 14px;
+    font-weight: 400;
     text-align: center;
     margin-bottom: 5px;
   }
@@ -39,14 +40,15 @@
     justify-content: center;
     button {
       color: $gray;
-      font-size: 25px;
+      font-size: 28px;
       display: flex;
       align-items: center;
       border: none;
       background-color: transparent;
     }
-    .liked {
-      color: $lightOrange;
+    .like {
+      color: $main;
+      transition: 0.5s;
     }
   }
 }

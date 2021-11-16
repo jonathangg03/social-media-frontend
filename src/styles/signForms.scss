@@ -14,6 +14,7 @@ form {
     font-size: 17px;
     outline: none;
     font-family: $fontMain;
+    font-weight: 600;
     color: $light;
     background-color: transparent;
     border-bottom: 2px solid $light;
@@ -32,6 +33,6 @@ form {
   button {
     margin: 5px auto 0;
     display: block;
-    @include mainButton($width: 180px);
+    @include mainButton($width: 100%);
   }
 }

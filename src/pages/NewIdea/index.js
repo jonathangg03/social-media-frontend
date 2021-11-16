@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import Menu from '../../components/Menu'
 import './newIdea.scss'
 
 const mockProfile = {
@@ -28,6 +29,7 @@ export default function NewIdea() {
         </div>
         <button>Publicar</button>
       </form>
+      <Menu />
     </div>
   )
 }
