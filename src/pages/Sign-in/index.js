@@ -1,24 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../../components/Logo'
-import FormSignIn from '../../components/FormSignIn'
-import Mountains from '../../../public/mountains.jpg'
+import SignInForm from '../../components/SignInForm'
+import './signIn.scss'
 
-export default function SignUp() {
+export default function SignIn() {
   return (
-    <div className='home'>
-      <div className='home__img-bg'>
-        <img src={Mountains} alt='background' />
-      </div>
-      <section className='home__content'>
+    <>
+      <section className='signIn'>
         <Logo />
-        <div className='home__content-description'>
-          <FormSignIn />
+        <div className='signIn__content'>
+          <SignInForm />
         </div>
-        <p className='home__cta'>
+        <p className='signIn__cta'>
           ¿No tienes cuenta? <Link to='/sign-up'>Registrate</Link>
         </p>
       </section>
-    </div>
+    </>
   )
 }

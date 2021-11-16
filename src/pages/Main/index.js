@@ -23,12 +23,12 @@ export default function Home() {
   }, [])
 
   return (
-    <div className='home'>
-      <section className='home__content'>
+    <div className='main'>
+      <section className='main__content'>
         <Logo />
-        <div className='home__content-description'>
+        <div className='main__content-description'>
           <h1>¡Comparte tus ideas con el mundo!</h1>
-          <div className='home__content-description-buttons'>
+          <div className='main__content-description-buttons'>
             <button onClick={onClickLog}>Registrarme</button>
             <button onClick={onClickLog}>Ingresar</button>
           </div>

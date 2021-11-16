@@ -1,0 +1,19 @@
+@import '../../styles/variables.scss';
+
+.options {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  transition: 0.4s ease-in-out all;
+  background-color: $secondary;
+  width: 100%;
+  height: 65px;
+  a {
+    color: $light;
+    font-size: 25px;
+  }
+}

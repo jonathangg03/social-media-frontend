@@ -1,7 +1,7 @@
 import React from 'react'
 import Hero from '../../components/Hero'
 import IdeasList from '../../components/IdeasList'
-import Options from '../../components/Options'
+import Menu from '../../components/Menu'
 import './profile.scss'
 
 //diseños: https://creativemarket.com/evatheme/2144499-Collector-iOS-Wireframe-UI-Kit?utm_source=Pinterest&utm_medium=CM+Social+Share&utm_campaign=Product+Social+Share&utm_content=Collector+iOS+Wireframe+UI+Kit&ts=201910&epik=dj0yJnU9ODZOTFBiN3d4ZjNvcG1WckUxSXNQbjFVTDkxY0U0aUQmcD0wJm49TzZKSmZmZkEtVTJibUk1aVZmY1ZiUSZ0PUFBQUFBR0dDdlJ3
@@ -52,7 +52,7 @@ export default function Profile({ params }) {
         description={mockProfile.description}
       />
       <IdeasList ideas={IDEAS} />
-      <Options />
+      <Menu />
     </div>
   )
 }
