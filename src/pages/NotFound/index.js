@@ -7,7 +7,7 @@ import './notFound.scss'
 export default function NotFound() {
   return (
     <div>
-      <Logo black={true} />
+      <Logo />
       <div className='NotFound'>
         <img src={NotFoundImage} alt='404' />
         <p className='NotFound__message'>

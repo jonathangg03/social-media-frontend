@@ -21,11 +21,6 @@ export default function Hero({
         <h2>{name}</h2>
         <h4>{description}</h4>
       </div>
-      <div className='hero__edit'>
-        <Link to='/2/profile/edit'>
-          <FaPen />
-        </Link>
-      </div>
     </div>
   )
 }

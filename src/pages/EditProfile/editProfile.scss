@@ -1,14 +1,16 @@
 @import '../../styles/variables.scss';
 
 .editProfile {
-  padding: 15px;
+  padding-bottom: 15px;
   h2 {
     text-align: center;
-    color: $blue;
+    color: $light;
+    font-weight: 900;
+    line-height: 35px;
     padding-bottom: 20px;
   }
-  a {
-    color: $blue;
+  .editProfile__link {
+    color: $main;
     text-decoration: none;
 
     p {

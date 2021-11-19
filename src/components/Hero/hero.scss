@@ -26,10 +26,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.26);
+    background: #00000069;
     h2 {
-      font-size: 18px;
-      margin: 5px 0;
+      font-size: 20px;
+      margin: 10px 0 5px;
     }
     &-picture {
       width: 75px;
@@ -43,17 +43,24 @@
     }
 
     h4 {
-      font-weight: 500;
+      font-weight: 600;
     }
   }
 
   &__edit {
     position: absolute;
-    bottom: 15px;
-    right: 15px;
-    font-size: 22px;
+    bottom: 5px;
+    left: 5px;
+    font-size: 18px;
+    background-color: #0000008a;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     a {
-      color: $blue;
+      color: $light;
     }
   }
 }

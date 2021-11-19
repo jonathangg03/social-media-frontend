@@ -1,0 +1,122 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.editProfileForm {
+  label {
+    display: block;
+    margin-bottom: 10px;
+    color: $light;
+    font-size: 17px;
+  }
+
+  &-item {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin-bottom: 25px;
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+    .editProfileForm__file-input {
+      background-color: transparent;
+      position: absolute;
+      top: 0;
+      height: 100px;
+      width: 100px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      border: none;
+      border: 2px solid $light;
+      border-radius: 50%;
+    }
+
+    .editProfileForm__file-input::-webkit-file-upload-button {
+      visibility: hidden;
+    }
+
+    .editProfileForm__file-input::before {
+      content: 'Actualizar';
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.733);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      font-size: 17px;
+      padding-top: 8px;
+    }
+
+    &-camera {
+      color: $light;
+      position: absolute;
+      top: 0;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      right: 50%;
+      width: 30px;
+      height: 30px;
+      right: calc(50% - 15px);
+      top: calc(50% - 30px);
+    }
+  }
+
+  .cover {
+    width: 100%;
+    height: 200px;
+
+    img {
+      border-radius: 0;
+    }
+
+    .editProfileForm__file-input-cover {
+      width: 100%;
+      height: 100%;
+      border-radius: 0;
+      background-color: transparent;
+      position: absolute;
+      padding: 0;
+      display: flex;
+      top: 0;
+      border: 2px solid $light;
+    }
+
+    .editProfileForm__file-input-cover::before {
+      content: 'Actualizar';
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.733);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 10px;
+    }
+
+    .editProfileForm-item-camera {
+      font-size: 50px;
+      top: calc(50% - 37px);
+    }
+  }
+
+  input::placeholder {
+    color: $light;
+  }
+
+  input[type='file'] {
+    color: white;
+    font-size: 25px;
+    font-weight: 600;
+  }
+
+  button {
+    margin-bottom: 20px;
+    @include mainButton($width: 100%);
+  }
+}

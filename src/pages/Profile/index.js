@@ -1,7 +1,10 @@
-import React from 'react'
+import { useRef, useState } from 'react'
+import { FaGripHorizontal, FaTimes } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Hero from '../../components/Hero'
 import IdeasList from '../../components/IdeasList'
-import Options from '../../components/Options'
+import Menu from '../../components/Menu'
 import './profile.scss'
 
 //diseños: https://creativemarket.com/evatheme/2144499-Collector-iOS-Wireframe-UI-Kit?utm_source=Pinterest&utm_medium=CM+Social+Share&utm_campaign=Product+Social+Share&utm_content=Collector+iOS+Wireframe+UI+Kit&ts=201910&epik=dj0yJnU9ODZOTFBiN3d4ZjNvcG1WckUxSXNQbjFVTDkxY0U0aUQmcD0wJm49TzZKSmZmZkEtVTJibUk1aVZmY1ZiUSZ0PUFBQUFBR0dDdlJ3
@@ -43,6 +46,18 @@ const IDEAS = [
 ]
 
 export default function Profile({ params }) {
+  const navigate = useNavigate()
+  const [openOptions, setOpenOptions] = useState(false)
+
+  const handleClickOpenOptions = () => {
+    setOpenOptions(!openOptions)
+  }
+
+  const handleClickLogout = () => {
+    localStorage.removeItem('auth')
+    navigate('/')
+  }
+
   return (
     <div className='profile'>
       <Hero
@@ -52,7 +67,19 @@ export default function Profile({ params }) {
         description={mockProfile.description}
       />
       <IdeasList ideas={IDEAS} />
-      <Options />
+      <Menu />
+      <button
+        className='profile__optionsButton'
+        onClick={handleClickOpenOptions}
+      >
+        {openOptions ? <FaTimes /> : <FaGripHorizontal />}
+      </button>
+      <div className='profile__optionsHandler'>
+        <div className={`profile__options ${openOptions ? 'showOptions' : ''}`}>
+          <Link to='/2/profile/edit'>Editar perfil</Link>
+          <button onClick={handleClickLogout}>Cerrar sesión</button>
+        </div>
+      </div>
     </div>
   )
 }

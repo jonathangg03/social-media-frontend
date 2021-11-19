@@ -15,3 +15,16 @@
   ); /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(to right, $firstColor, $secondColor);
 }
+
+@mixin mainButton($width, $bgColor: $main, $height: 65px) {
+  background-color: $bgColor;
+  width: $width;
+  height: $height;
+  font-family: $fontMain;
+  border-radius: 50px;
+  border: none;
+  color: $light;
+  font-weight: 700;
+  font-size: 19px;
+  cursor: pointer;
+}
