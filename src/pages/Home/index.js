@@ -36,7 +36,7 @@ export default function Home() {
 
   return (
     <div className='home'>
-      <Logo />
+      <h2>Inicio</h2>
       <IdeasList ideas={IDEAS} />
       <Menu />
     </div>

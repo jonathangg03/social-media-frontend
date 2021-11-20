@@ -36,7 +36,8 @@ const IDEAS = [
   },
   {
     title: 'Título de la nota',
-    content: 'Esto es una idea nueva',
+    content:
+      'Esto es una idea nueva fgffkfkyuyukfyufkyufkkkkkkkkkkkkkkkkfyutui   ti ti ti tii  iiti t r  ur rit6o 8 r65e5447e865u6u',
     date: '2 de Marzo del 2020',
     _id: 4
   }
@@ -45,7 +46,6 @@ const IDEAS = [
 export default function Liked({ params }) {
   return (
     <div className='liked'>
-      <Logo />
       <h2>Ideas que te gustaron</h2>
       <IdeasList ideas={IDEAS} />
       <Menu />

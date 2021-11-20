@@ -5,7 +5,7 @@ import './searchPeople.scss'
 export default function SearchPeople() {
   return (
     <div className='searchPeople'>
-      <h2>Ingresa el nombre de una persona para ver su perfil</h2>
+      <h2>Busca a una persona</h2>
       <Search />
       <Menu />
     </div>

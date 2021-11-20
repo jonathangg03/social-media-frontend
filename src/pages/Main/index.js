@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Logo from '../../components/Logo'
-import { useNavigate, Navigate } from 'react-router-dom'
+import { useNavigate, Navigate, Link } from 'react-router-dom'
+import SignInForm from '../../components/SignInForm'
 import './main.scss'
 
 export default function Home() {
@@ -20,12 +21,12 @@ export default function Home() {
     <div className='main'>
       <section className='main__content'>
         <Logo />
+        <h1>¡Comparte tus ideas con el mundo!</h1>
         <div className='main__content-description'>
-          <h1>¡Comparte tus ideas con el mundo!</h1>
-          <div className='main__content-description-buttons'>
-            <button onClick={onClickLog}>Registrarme</button>
-            <button onClick={onClickLog}>Ingresar</button>
-          </div>
+          <SignInForm />
+          <p className='signIn__cta'>
+            ¿No tienes cuenta? <Link to='/sign-up'>Registrate</Link>
+          </p>
         </div>
       </section>
     </div>

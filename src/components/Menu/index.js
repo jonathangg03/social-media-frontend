@@ -1,5 +1,4 @@
-import React, { useRef, useState } from 'react'
-import { FaUserPlus, FaUser, FaPlus, FaHeart, FaHome } from 'react-icons/fa'
+import { FaSearch, FaUser, FaPlus, FaHeart, FaHome } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import './menu.scss'
 
@@ -23,7 +22,7 @@ export default function Menu() {
       </li>
       <li className='options__item'>
         <Link to='/search'>
-          <FaUserPlus />
+          <FaSearch />
         </Link>
       </li>
       <li className='options__item'>
