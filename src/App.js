@@ -5,7 +5,7 @@ import Liked from './pages/Liked'
 import Search from './pages/Search'
 import Profile from './pages/Profile'
 import EditProfile from './pages/EditProfile'
-// import NewIdea from './pages/NewIdea'
+import NewIdea from './pages/NewIdea'
 // import NotFound from './pages/NotFound'
 
 export default function App() {
@@ -19,8 +19,8 @@ export default function App() {
         <Route path='/:id/profile' element={<Profile />} />
         <Route path='/search/:id/' element={<Profile />} />
         <Route path='/:id/profile/edit' element={<EditProfile />} />
-        {/* 
         <Route path='/:id/newIdea' element={<NewIdea />} />
+        {/* 
         <Route path='*' element={<NotFound />} /> */}
       </Routes>
     </BrowserRouter>
