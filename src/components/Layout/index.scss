@@ -1,0 +1,10 @@
+.Layout {
+  // padding: 19px 25px;
+  padding: 19px 0;
+  &__ellipse {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+  }
+}
