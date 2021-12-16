@@ -1,0 +1,20 @@
+@import '../../styles/variables.scss';
+
+.editProfile {
+  padding: 26px 0;
+  h2 {
+  }
+  .editProfile__link {
+    p {
+      span {
+      }
+    }
+  }
+
+  .ellipse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+}
