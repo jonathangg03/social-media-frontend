@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { FaGripHorizontal, FaTimes } from 'react-icons/fa'
 import Hero from '../../components/Hero'
@@ -6,6 +6,7 @@ import IdeasList from '../../components/IdeasList'
 import Menu from '../../components/Menu'
 import Cat from '../../../public/cat.jpg'
 import Context from '../../Context/authContext'
+import getIdeas from '../../services/getIdeas'
 import './index.scss'
 const IDEAS = [
   {
@@ -48,21 +49,19 @@ const IDEAS = [
 ]
 
 export default function Profile() {
-  const navigate = useNavigate()
   const location = useLocation()
   const { profilePhotoUrl, coverPhotoUrl, name, description, _id } =
     useContext(Context)
-  const [openOptions, setOpenOptions] = useState(false)
   const [followed, setFollowed] = useState(false)
+  const [ideas, setIdeas] = useState([])
 
-  const handleClickOpenOptions = () => {
-    setOpenOptions(!openOptions)
-  }
-
-  const handleClickLogout = () => {
-    localStorage.removeItem('auth')
-    navigate('/')
-  }
+  useEffect(async () => {
+    if (_id) {
+      const response = await getIdeas({ id: _id })
+      console.log(response)
+      setIdeas(response)
+    }
+  }, [_id])
 
   const handleFollow = () => {
     setFollowed(!followed)
@@ -85,20 +84,8 @@ export default function Profile() {
           {followed ? 'Siguiendo' : 'Seguir'}
         </button>
       )}
-      <IdeasList ideas={IDEAS} />
+      <IdeasList ideas={ideas || []} />
       <Menu />
-      <button
-        className='profile__optionsButton'
-        onClick={handleClickOpenOptions}
-      >
-        {openOptions ? <FaTimes /> : <FaGripHorizontal />}
-      </button>
-      <div className='profile__optionsHandler'>
-        <div className={`profile__options ${openOptions ? 'showOptions' : ''}`}>
-          <Link to='/2/profile/edit'>Editar perfil</Link>
-          <button onClick={handleClickLogout}>Cerrar sesión</button>
-        </div>
-      </div>
     </div>
   )
 }

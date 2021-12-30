@@ -7,17 +7,10 @@ import {
 } from 'react-icons/hi'
 import Modal from '../Modal'
 import DeleteModalContent from '../DeleteModalContent'
-import ProfilePicture from '../../../public/ProfilePicture1.png'
+import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import './index.scss'
 
-export default function Idea({
-  name,
-  content,
-  date,
-  likes,
-  image,
-  id_Persona
-}) {
+export default function Idea({ content, date, likes, user, image }) {
   const [liked, setLiked] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
   const [openModal, setOpenModal] = useState(false)
@@ -40,10 +33,13 @@ export default function Idea({
     <li className='idea'>
       <div className='idea__header'>
         <figure className='idea__header-image'>
-          <img src={ProfilePicture} alt={name} />
+          <img
+            src={user.profilePhotoUrl || defaultProfilePhoto}
+            alt={user.name}
+          />
         </figure>
-        <h3>{name}</h3>
-        {location.pathname.includes('/profile') && params.id === id_Persona && (
+        <h3>{user.name}</h3>
+        {location.pathname.includes('/profile') && params.id === user.id && (
           <div className='idea__header-options' onClick={handleOpenMenu}>
             <HiOutlineDotsHorizontal />
           </div>
@@ -52,7 +48,7 @@ export default function Idea({
       <p className='idea__content'>{content}</p>
       {image && (
         <div className='idea__image'>
-          <img src={image} />
+          <img src={user.profilePhotoUrl || ''} />
         </div>
       )}
       <div className='idea__footer'>
@@ -67,7 +63,7 @@ export default function Idea({
           {likes.length > 0 && <p>{likes.length}</p>}
         </div>
       </div>
-      {location.pathname.includes('/profile') && params.id === id_Persona && (
+      {location.pathname.includes('/profile') && params.id === user._id && (
         <>
           <section className={`idea__menu ${openMenu && 'show-menu'}`}>
             <section>

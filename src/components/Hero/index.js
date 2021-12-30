@@ -17,7 +17,7 @@ export default function Hero({
 }) {
   const [openMenu, setOpenMenu] = useState(false)
   const navigate = useNavigate()
-  const { setJwt } = useContext(Context)
+  const { setJwt, _id } = useContext(Context)
 
   const handleOpenMenu = (e) => {
     setOpenMenu(!openMenu)
@@ -35,7 +35,7 @@ export default function Hero({
     }
   }
 
-  const params = useParams()
+  // const params = useParams()
   return (
     <div className='hero'>
       <div className='hero__wrapper'>
@@ -52,7 +52,7 @@ export default function Hero({
           <h2>{name}</h2>
           <p>{description}</p>
         </div>
-        {params.id === id && (
+        {_id === id && (
           <>
             <div className='hero__menu-activator' onClick={handleOpenMenu}>
               <HiMenu />

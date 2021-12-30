@@ -23,7 +23,7 @@ export default function App() {
             <Route path='/home' element={<Home />} />
             <Route path='/liked' element={<Liked />} />
             <Route path='/search' element={<Search />} />
-            <Route path='/:id/profile' element={<Profile />} />
+            <Route path='/profile' element={<Profile />} />
             <Route path='/search/:id/' element={<Profile />} />
             <Route path='/:id/profile/edit' element={<EditProfile />} />
             <Route path='/:id/newIdea' element={<NewIdea />} />
