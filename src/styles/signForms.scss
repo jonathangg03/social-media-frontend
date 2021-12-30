@@ -41,6 +41,10 @@
     @include mainButton();
   }
 
+  &__button[disabled] {
+    background-color: $main200;
+  }
+
   p {
     font-size: 1.6rem;
     color: white;

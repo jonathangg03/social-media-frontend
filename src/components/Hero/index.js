@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { HiMenu } from 'react-icons/hi'
 import { useParams, useNavigate } from 'react-router-dom'
 import Ellipse1 from '../../../public/Profile/Ellipse1.png'
 import Ellipse2 from '../../../public/Profile/Ellipse2.png'
+import Context from '../../Context/authContext'
 import './index.scss'
 
 export default function Hero({
@@ -14,6 +15,7 @@ export default function Hero({
 }) {
   const [openMenu, setOpenMenu] = useState(false)
   const navigate = useNavigate()
+  const { setJwt } = useContext(Context)
 
   const handleOpenMenu = (e) => {
     setOpenMenu(!openMenu)
@@ -25,6 +27,8 @@ export default function Hero({
     }
 
     if (e.target.textContent === 'Cerrar sesión') {
+      document.cookie = 'token=; max-age=0'
+      setJwt(null)
       navigate('/')
     }
   }

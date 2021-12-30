@@ -10,7 +10,9 @@ export default function Menu() {
         <Link
           to='/home'
           className={
-            location.pathname.includes('/home') ? 'actual__visited' : ''
+            location.pathname.includes('/home') || location.pathname === '/'
+              ? 'actual__visited'
+              : ''
           }
         >
           <HiHome />

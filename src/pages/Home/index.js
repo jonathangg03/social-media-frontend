@@ -1,8 +1,10 @@
+import { useContext } from 'react'
 import Menu from '../../components/Menu'
 import IdeasList from '../../components/IdeasList'
 import Layout from '../../components/Layout'
 import ProfilePicture from '../../../public/ProfilePicture1.png'
 import Cat from '../../../public/cat.jpg'
+import AuthContext from '../../Context/authContext'
 import './index.scss'
 
 const IDEAS = [
@@ -42,8 +44,9 @@ const IDEAS = [
 ]
 
 export default function Home() {
-  // if (!localStorage.getItem('auth')) return <Navigate to='/' />
+  const { profile } = useContext(AuthContext)
 
+  console.log(profile)
   return (
     <Layout>
       <div className='Home'>
