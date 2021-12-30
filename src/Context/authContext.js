@@ -6,7 +6,7 @@ const Context = createContext({})
 
 export function AuthContextProvider({ children }) {
   const [jwt, setJwt] = useState(() => getCookie({ name: 'token' } || null))
-  const [profile, setProfile] = useState(null)
+  const [profile, setProfile] = useState({})
 
   useEffect(async () => {
     if (jwt) {
@@ -20,7 +20,13 @@ export function AuthContextProvider({ children }) {
   }, [])
 
   return (
-    <Context.Provider value={{ token: jwt, setJwt, profile }}>
+    <Context.Provider
+      value={{
+        token: jwt,
+        setJwt,
+        profile
+      }}
+    >
       {children}
     </Context.Provider>
   )
