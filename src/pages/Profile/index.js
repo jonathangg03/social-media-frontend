@@ -5,7 +5,6 @@ import Hero from '../../components/Hero'
 import IdeasList from '../../components/IdeasList'
 import Menu from '../../components/Menu'
 import Cat from '../../../public/cat.jpg'
-import ProfilePicture from '../../../public/ProfilePicture1.png'
 import Context from '../../Context/authContext'
 import './index.scss'
 const IDEAS = [
@@ -51,7 +50,8 @@ const IDEAS = [
 export default function Profile() {
   const navigate = useNavigate()
   const location = useLocation()
-  const { profile } = useContext(Context)
+  const { profilePhotoUrl, coverPhotoUrl, name, description, _id } =
+    useContext(Context)
   const [openOptions, setOpenOptions] = useState(false)
   const [followed, setFollowed] = useState(false)
 
@@ -70,13 +70,12 @@ export default function Profile() {
 
   return (
     <div className='profile'>
-      {console.log(profile)}
       <Hero
-        profilePicture={profile.profilePhotoUrl || ''}
-        backgroundPicture={profile.coverPhotoUrl || ''}
-        name={profile.name || ''}
-        description={profile.description || ''}
-        id={profile._id || ''}
+        profilePicture={profilePhotoUrl}
+        backgroundPicture={coverPhotoUrl}
+        name={name}
+        description={description}
+        id={_id}
       />
       {location.pathname.includes('/search') && (
         <button

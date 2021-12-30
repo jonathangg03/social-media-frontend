@@ -19,12 +19,28 @@ export function AuthContextProvider({ children }) {
     }
   }, [])
 
+  const {
+    coverPhotoUrl,
+    description,
+    followedPeople,
+    likedPost,
+    name,
+    profilePhotoUrl,
+    _id
+  } = profile
+
   return (
     <Context.Provider
       value={{
         token: jwt,
         setJwt,
-        profile
+        coverPhotoUrl,
+        description,
+        followedPeople,
+        likedPost,
+        name,
+        profilePhotoUrl,
+        _id
       }}
     >
       {children}

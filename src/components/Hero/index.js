@@ -4,6 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 import Ellipse1 from '../../../public/Profile/Ellipse1.png'
 import Ellipse2 from '../../../public/Profile/Ellipse2.png'
 import Context from '../../Context/authContext'
+import DefaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
+import DefaultCoverPhoto from '../../../public/defaultCoverPhoto.jpg'
 import './index.scss'
 
 export default function Hero({
@@ -38,11 +40,14 @@ export default function Hero({
     <div className='hero'>
       <div className='hero__wrapper'>
         <div className='hero__background-picture'>
-          <img src={backgroundPicture} alt={`${name} background picture`} />
+          <img
+            src={backgroundPicture || DefaultCoverPhoto}
+            alt={`${name} background picture`}
+          />
         </div>
         <div className='hero__information'>
           <figure className='hero__information-picture'>
-            <img src={profilePicture} alt={name} />
+            <img src={profilePicture || DefaultProfilePhoto} alt={name} />
           </figure>
           <h2>{name}</h2>
           <p>{description}</p>
