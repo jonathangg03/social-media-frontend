@@ -1,26 +1,51 @@
-import { Formik } from 'formik'
 import axios from 'axios'
+import { useContext } from 'react'
+import { Formik } from 'formik'
+import { useNavigate } from 'react-router-dom'
 import { HiXCircle } from 'react-icons/hi'
+import { setCookie } from '../../utils/cookies'
+import Context from '../../Context/authContext'
 import '../../styles/signForms.scss'
 
 export default function SignUpForm({ onClose, onOpenOtherModal }) {
+  const navigate = useNavigate()
+  const { setJwt } = useContext(Context)
   return (
     <Formik
-      initialValues={{ email: '', password: '', age: 0 }}
+      initialValues={{ name: '', email: '', password: '' }}
       onSubmit={async (values) => {
-        const { email, password, age } = values
-        axios.post('http://localhost:3000/user', {
-          email,
-          password,
-          age
-        })
+        const { name, email, password } = values
+        try {
+          await axios.post('http://localhost:3001/user', {
+            name,
+            email,
+            password
+          })
+          const response = await axios.post(
+            'http://localhost:3001/auth/sign-in',
+            {
+              email,
+              password
+            }
+          )
+          setCookie({ name: 'token', value: response.data.body.jwt })
+          setJwt(response.data.body.jwt)
+          navigate('/home')
+        } catch (error) {
+          console.log(error.message)
+        }
       }}
     >
-      {(handleChange, handleSubmit, isSubmitting) => {
+      {({ handleChange, handleSubmit, isSubmitting }) => {
         return (
           <form onSubmit={handleSubmit} className='signForm'>
             <h2>Registro</h2>
-            <input {...email} />
+            <input
+              type='text'
+              name='name'
+              placeholder='Nombre completo'
+              onChange={handleChange}
+            />
             <input
               type='email'
               name='email'
@@ -31,12 +56,6 @@ export default function SignUpForm({ onClose, onOpenOtherModal }) {
               type='password'
               name='password'
               placeholder='Contraseña'
-              onChange={handleChange}
-            />
-            <input
-              type='number'
-              name='age'
-              placeholder='Edad'
               onChange={handleChange}
             />
             <button className='signForm__button' disabled={isSubmitting}>

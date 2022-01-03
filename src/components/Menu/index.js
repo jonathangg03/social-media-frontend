@@ -54,7 +54,7 @@ export default function Menu() {
       </li>
       <li className='menu__item'>
         <Link
-          to='/1/profile'
+          to='/profile'
           className={
             location.pathname.includes('/profile') ? 'actual__visited' : ''
           }
