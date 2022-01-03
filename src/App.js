@@ -25,7 +25,7 @@ export default function App() {
             <Route path='/search' element={<Search />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/search/:id/' element={<Profile />} />
-            <Route path='/:id/profile/edit' element={<EditProfile />} />
+            <Route path='/profile/edit' element={<EditProfile />} />
             <Route path='/:id/newIdea' element={<NewIdea />} />
             <Route path='*' element={<NotFound />} />
           </>

@@ -25,7 +25,7 @@ export default function Hero({
 
   const handleNavigate = (e) => {
     if (e.target.textContent === 'Editar perfil') {
-      navigate('/2/profile/edit')
+      navigate('/profile/edit')
     }
 
     if (e.target.textContent === 'Cerrar sesión') {
