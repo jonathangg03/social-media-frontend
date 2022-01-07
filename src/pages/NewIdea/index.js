@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import Context from '../../Context/authContext'
 import { useNavigate } from 'react-router-dom'
 import { HiX } from 'react-icons/hi'
 import Menu from '../../components/Menu'
@@ -6,6 +7,7 @@ import Logo from '../../components/Logo'
 import ProfilePicture from '../../../public/ProfilePicture1.png'
 import Ellipse1 from '../../../public/NewIdea/Ellipse1.png'
 import Ellipse2 from '../../../public/NewIdea/Ellipse2.png'
+import sendIdea from '../../services/sendIdea'
 import './index.scss'
 
 const mockProfile = {
@@ -22,9 +24,11 @@ const DRAG_IMAGE_STATES = {
 
 export default function NewIdea() {
   const navigate = useNavigate()
+  const { _id } = useContext(Context)
   const [drag, setDrag] = useState(DRAG_IMAGE_STATES.NONE)
   const [file, setFile] = useState(null) //Guardará el archivo a subir
   const [imgUrl, setImgUrl] = useState(null)
+  const [content, setContent] = useState('')
 
   useEffect(() => {
     if (file) {
@@ -36,9 +40,19 @@ export default function NewIdea() {
     }
   }, [file])
 
-  const handleSumbitItea = (e) => {
+  const handleChangeContent = (e) => {
+    setContent(e.target.value)
+  }
+
+  const handleSumbitItea = async (e) => {
     e.preventDefault()
-    navigate('/2/profile')
+    const fd = new FormData()
+    fd.append('content', content)
+    if (e.target[1].files[0]) {
+      fd.append('postImage', e.target[1].files[0])
+    }
+    await sendIdea({ id: _id, content: fd })
+    navigate('/home')
   }
 
   const handleChangeImage = (file) => {
@@ -93,6 +107,7 @@ export default function NewIdea() {
             onDragEnter={handleDragEnter}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
+            onChange={handleChangeContent}
             className={`${drag === 1 && 'dragging'}`}
           ></textarea>
           {imgUrl && (
@@ -106,7 +121,7 @@ export default function NewIdea() {
           <input
             type='file'
             className='newIdea__imageInput'
-            accept='image/png, image/jpeg image/jpg'
+            accept='.png, .jpeg, .jpg'
             onChange={handleFileInputChange}
           />
           <button>Publicar</button>

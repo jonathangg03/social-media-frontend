@@ -40,14 +40,11 @@ export default function Hero({
     <div className='hero'>
       <div className='hero__wrapper'>
         <div className='hero__background-picture'>
-          <img
-            src={backgroundPicture || DefaultCoverPhoto}
-            alt={`${name} background picture`}
-          />
+          <img src={backgroundPicture || null} />
         </div>
         <div className='hero__information'>
           <figure className='hero__information-picture'>
-            <img src={profilePicture || DefaultProfilePhoto} alt={name} />
+            <img src={profilePicture || null} />
           </figure>
           <h2>{name}</h2>
           <p>{description}</p>

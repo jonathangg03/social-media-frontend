@@ -10,7 +10,7 @@ import DeleteModalContent from '../DeleteModalContent'
 import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import './index.scss'
 
-export default function Idea({ content, date, likes, user, image }) {
+export default function Idea({ content, date, likes, user, imageUrl }) {
   const [liked, setLiked] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
   const [openModal, setOpenModal] = useState(false)
@@ -46,9 +46,9 @@ export default function Idea({ content, date, likes, user, image }) {
         )}
       </div>
       <p className='idea__content'>{content}</p>
-      {image && (
+      {imageUrl && (
         <div className='idea__image'>
-          <img src={user.profilePhotoUrl || ''} />
+          <img src={imageUrl} />
         </div>
       )}
       <div className='idea__footer'>

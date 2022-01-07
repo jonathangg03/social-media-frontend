@@ -8,23 +8,30 @@ import Cat from '../../../public/cat.jpg'
 import Context from '../../Context/authContext'
 import getIdeas from '../../services/getIdeas'
 import './index.scss'
+import getProfile from '../../services/getProfile'
 
 //ARREGLAR BOG DE NO MOSTRAR NOMBRE NI IDEAS
 
 export default function Profile() {
   const location = useLocation()
-  const { profilePhotoUrl, coverPhotoUrl, name, description, _id } =
-    useContext(Context)
+  const { token, _id } = useContext(Context)
   const [followed, setFollowed] = useState(false)
   const [ideas, setIdeas] = useState([])
+  const [profile, setProfile] = useState({
+    profilePhotoUrl: '',
+    coverPhotoUrl: '',
+    name: '',
+    description: ''
+  })
 
   useEffect(async () => {
-    if (_id) {
-      const response = await getIdeas({ id: _id })
-      console.log(response)
-      setIdeas(response)
+    if (_id && token) {
+      const ideasResponse = await getIdeas({ id: _id })
+      const profileResponse = await getProfile({ token })
+      setIdeas(ideasResponse)
+      setProfile(profileResponse)
     }
-  }, [_id])
+  }, [_id, token])
 
   const handleFollow = () => {
     setFollowed(!followed)
@@ -32,11 +39,12 @@ export default function Profile() {
 
   return (
     <div className='profile'>
+      {console.log('Context: ', _id)}
       <Hero
-        profilePicture={profilePhotoUrl}
-        backgroundPicture={coverPhotoUrl}
-        name={name}
-        description={description}
+        profilePicture={profile.profilePhotoUrl}
+        backgroundPicture={profile.coverPhotoUrl}
+        name={profile.name}
+        description={profile.description}
         id={_id}
       />
       {location.pathname.includes('/search') && (

@@ -1,4 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import Context from '../../Context/authContext'
 import getProfile from '../../services/getProfile'
@@ -15,6 +16,7 @@ const mockProfile = {
 }
 
 export default function editProfileForm() {
+  const navigate = useNavigate()
   const { token } = useContext(Context)
   const [profile, setProfile] = useState({
     name: '',
@@ -22,14 +24,13 @@ export default function editProfileForm() {
     profilePhotoUrl: '',
     coverPhotoUrl: ''
   })
+  const [profilePicture, setProfilePicture] = useState('')
+  const [coverPicture, setCoverPicture] = useState('')
 
   useEffect(async () => {
     const user = await getProfile({ token })
     setProfile(user)
   }, [token])
-
-  const [profilePicture, setProfilePicture] = useState('')
-  const [coverPicture, setCoverPicture] = useState('')
 
   useEffect(() => {
     setProfilePicture(profile.profilePhotoUrl)
@@ -79,6 +80,7 @@ export default function editProfileForm() {
       fd.append('profilePhoto', e.target[0].files[0])
       fd.append('coverPhoto', e.target[1].files[0])
       await axios.patch(`http://localhost:3001/user/${profile._id}`, fd)
+      navigate('/profile')
     } catch (error) {
       console.log(error.message)
     }
@@ -87,7 +89,7 @@ export default function editProfileForm() {
   return (
     <form className='editProfileForm' onSubmit={handleSubmit}>
       <div className='editProfileForm-item'>
-        <img src={profilePicture} />
+        <img src={profilePicture || null} />
         <div className='editProfileForm-item-camera'>
           <p>Actualizar</p>
           <FaCamera />
@@ -101,7 +103,7 @@ export default function editProfileForm() {
         />
       </div>
       <div className='editProfileForm-item cover'>
-        <img src={coverPicture} />
+        <img src={coverPicture || null} />
         <div className='editProfileForm-item-camera cover'>
           <p>Actualizar</p>
           <FaCamera />

@@ -13,6 +13,9 @@ import Context from './Context/authContext'
 
 export default function App() {
   const { token } = useContext(Context)
+  //A LA PRIMERA, NO SE MUESTRAN LOS DATOS
+  //POSIBLEMENTE PORQUE AL INICIO, EL CONTEXT NO TIENE LA COOKIE, Y AUN ASÍ LA ESTA
+  //iNTENTANDO LEER
 
   return (
     <BrowserRouter>
@@ -26,7 +29,7 @@ export default function App() {
             <Route path='/profile' element={<Profile />} />
             <Route path='/search/:id/' element={<Profile />} />
             <Route path='/profile/edit' element={<EditProfile />} />
-            <Route path='/:id/newIdea' element={<NewIdea />} />
+            <Route path='/newIdea' element={<NewIdea />} />
             <Route path='*' element={<NotFound />} />
           </>
         ) : (

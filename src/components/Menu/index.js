@@ -34,7 +34,7 @@ export default function Menu() {
         }`}
       >
         <Link
-          to='/2/newIdea'
+          to='/newIdea'
           className={
             location.pathname.includes('/newIdea') ? 'actual__visited' : ''
           }

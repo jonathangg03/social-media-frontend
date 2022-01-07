@@ -15,31 +15,17 @@ export function AuthContextProvider({ children }) {
           Authorization: `Bearer ${jwt}`
         }
       })
-      setProfile(response.data)
+      setProfile(response.data.body)
     }
-  }, [])
+  }, [jwt])
 
-  const {
-    coverPhotoUrl,
-    description,
-    followedPeople,
-    likedPost,
-    name,
-    profilePhotoUrl,
-    _id
-  } = profile
+  const { _id } = profile
 
   return (
     <Context.Provider
       value={{
         token: jwt,
         setJwt,
-        coverPhotoUrl,
-        description,
-        followedPeople,
-        likedPost,
-        name,
-        profilePhotoUrl,
         _id
       }}
     >
