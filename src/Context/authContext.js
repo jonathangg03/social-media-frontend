@@ -15,7 +15,7 @@ export function AuthContextProvider({ children }) {
           Authorization: `Bearer ${jwt}`
         }
       })
-      setProfile(response.data.body.user)
+      setProfile(response.data)
     }
   }, [])
 

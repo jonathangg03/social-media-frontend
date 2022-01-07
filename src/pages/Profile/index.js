@@ -8,45 +8,8 @@ import Cat from '../../../public/cat.jpg'
 import Context from '../../Context/authContext'
 import getIdeas from '../../services/getIdeas'
 import './index.scss'
-const IDEAS = [
-  {
-    name: 'Ana Campos',
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis',
-    date: 'Hace 12 horas',
-    likes: ['a', 'a', 'a', 'a'],
-    id_Persona: '1',
-    _id: 1
-  },
-  {
-    name: 'Ana Campos',
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis',
-    date: 'Hace 12 horas',
-    likes: ['a', 'a', 'a', 'a'],
-    id_Persona: '1',
-    image: Cat,
-    _id: 2
-  },
-  {
-    name: 'Ana Campos',
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis',
-    date: 'Hace 12 horas',
-    likes: ['a', 'a', 'a', 'a'],
-    id_Persona: '1',
-    _id: 3
-  },
-  {
-    name: 'Ana Campos',
-    content:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis',
-    date: 'Hace 12 horas',
-    likes: ['a', 'a', 'a', 'a'],
-    id_Persona: '1',
-    _id: 4
-  }
-]
+
+//ARREGLAR BOG DE NO MOSTRAR NOMBRE NI IDEAS
 
 export default function Profile() {
   const location = useLocation()

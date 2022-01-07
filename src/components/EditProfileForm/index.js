@@ -1,8 +1,12 @@
-import './index.scss'
+import { useState, useContext, useEffect } from 'react'
+import axios from 'axios'
+import Context from '../../Context/authContext'
+import getProfile from '../../services/getProfile'
 import { FaCamera } from 'react-icons/fa'
 import Cat from '../../../public/cat.jpg'
 import ProfilePicture from '../../../public/ProfilePicture1.png'
-import { useState } from 'react/cjs/react.development'
+import './index.scss'
+
 const mockProfile = {
   profilePicture: ProfilePicture,
   cover: Cat,
@@ -11,12 +15,32 @@ const mockProfile = {
 }
 
 export default function editProfileForm() {
-  const [profilePicture, setProfilePicture] = useState(
-    mockProfile.profilePicture
-  )
-  const [coverPicture, setCoverPicture] = useState(mockProfile.cover)
+  const { token } = useContext(Context)
+  const [profile, setProfile] = useState({
+    name: '',
+    description: '',
+    profilePhotoUrl: '',
+    coverPhotoUrl: ''
+  })
+
+  useEffect(async () => {
+    const user = await getProfile({ token })
+    setProfile(user)
+  }, [token])
+
+  const [profilePicture, setProfilePicture] = useState('')
+  const [coverPicture, setCoverPicture] = useState('')
+
+  useEffect(() => {
+    setProfilePicture(profile.profilePhotoUrl)
+  }, [profile.profilePhotoUrl])
+
+  useEffect(() => {
+    setCoverPicture(profile.coverPhotoUrl)
+  }, [profile.coverPhotoUrl])
 
   const handleChangeProfilePicture = (e) => {
+    //Para mostrar la imagen en la página
     const file = e.target.files[0]
     if (file) {
       var reader = new FileReader()
@@ -28,6 +52,7 @@ export default function editProfileForm() {
   }
 
   const handleChangeCoverPicture = (e) => {
+    //Para mostrar la imagen en la página
     const file = e.target.files[0]
     if (file) {
       var reader = new FileReader()
@@ -38,8 +63,29 @@ export default function editProfileForm() {
     }
   }
 
+  const handleInputTextChange = (e) => {
+    setProfile({
+      ...profile,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      const fd = new FormData()
+      fd.append('name', profile.name)
+      fd.append('description', profile.description)
+      fd.append('profilePhoto', e.target[0].files[0])
+      fd.append('coverPhoto', e.target[1].files[0])
+      await axios.patch(`http://localhost:3001/user/${profile._id}`, fd)
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
+
   return (
-    <form className='editProfileForm'>
+    <form className='editProfileForm' onSubmit={handleSubmit}>
       <div className='editProfileForm-item'>
         <img src={profilePicture} />
         <div className='editProfileForm-item-camera'>
@@ -50,6 +96,7 @@ export default function editProfileForm() {
           type='file'
           onChange={handleChangeProfilePicture}
           className='editProfileForm__file-input'
+          accept='.jpg,.png,.jpeg'
           id='profilePicture'
         />
       </div>
@@ -63,11 +110,24 @@ export default function editProfileForm() {
           type='file'
           onChange={handleChangeCoverPicture}
           className='editProfileForm__file-input cover'
+          accept='.jpg,.png,.jpeg'
           id='profilePicture'
         />
       </div>
-      <input type='text' placeholder='Nombre' />
-      <input type='text' placeholder='Descripción' />
+      <input
+        type='text'
+        placeholder='Nombre'
+        value={profile.name}
+        name='name'
+        onChange={handleInputTextChange}
+      />
+      <input
+        type='text'
+        placeholder='Descripción'
+        value={profile.description}
+        name='description'
+        onChange={handleInputTextChange}
+      />
       <button>Actualizar</button>
     </form>
   )
