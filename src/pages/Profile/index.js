@@ -39,7 +39,6 @@ export default function Profile() {
 
   return (
     <div className='profile'>
-      {console.log('Context: ', _id)}
       <Hero
         profilePicture={profile.profilePhotoUrl}
         backgroundPicture={profile.coverPhotoUrl}
