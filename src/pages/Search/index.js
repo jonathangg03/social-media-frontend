@@ -1,31 +1,10 @@
 import { useState } from 'react'
+import { Formik } from 'formik'
 import Menu from '../../components/Menu'
 import Layout from '../../components/Layout'
+import getUsers from '../../services/getUsers'
 import ProfilePicture from '../../../public/ProfilePicture1.png'
 import './index.scss'
-
-const PEOPLE = [
-  {
-    name: 'Maria Lopez Gomez',
-    profilePicture: ProfilePicture,
-    _id: 1
-  },
-  {
-    name: 'Ana Perez González',
-    profilePicture: ProfilePicture,
-    _id: 2
-  },
-  {
-    name: 'Angel Torres Lopez',
-    profilePicture: ProfilePicture,
-    _id: 3
-  },
-  {
-    name: 'Raychell Blanco Arias',
-    profilePicture: ProfilePicture,
-    _id: 4
-  }
-]
 
 export default function Search() {
   // if (!localStorage.getItem('auth')) return <Navigate to='/' />
@@ -46,10 +25,6 @@ export default function Search() {
     }
   }
 
-  const handleChange = (e) => {
-    setSearch(e.target.value)
-  }
-
   return (
     <Layout>
       <div className='Search'>
@@ -57,15 +32,27 @@ export default function Search() {
         <div className='Search__profilePicture'>
           <img src={ProfilePicture} alt='Maria Lopez Gomez' />
         </div>
-        <form className='Search__input' onClick={handleSearch}>
-          <input
-            placeholder='Ingresa aquí el nombre de la persona'
-            value={search}
-            onChange={handleChange}
-            required
-          />
-          <button>Buscar</button>
-        </form>
+        <Formik
+          initialValues={{ name: '' }}
+          onSubmit={async (values) => {
+            const { name } = values
+            const response = await getUsers({ name })
+            console.log(response)
+            setResults(response)
+          }}
+        >
+          {({ handleChange, handleSubmit }) => (
+            <form className='Search__input' onSubmit={handleSubmit}>
+              <input
+                placeholder='Ingresa aquí el nombre de la persona'
+                onChange={handleChange}
+                name='name'
+                required
+              />
+              <button type='submit'>Buscar</button>
+            </form>
+          )}
+        </Formik>
         <section className='Search__results'>
           <ul>
             {results !== null && results.length === 0 && (
@@ -76,7 +63,7 @@ export default function Search() {
                 <h4>Resultados</h4>
                 {results.map((person) => (
                   <li key={person._id}>
-                    <img src={person.profilePicture} alt={person.name} />
+                    <img src={person.profilePhotoUrl || null} />
                     <h3>{person.name}</h3>
                   </li>
                 ))}

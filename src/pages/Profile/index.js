@@ -28,6 +28,7 @@ export default function Profile() {
     if (_id && token) {
       const ideasResponse = await getIdeas({ id: _id })
       const profileResponse = await getProfile({ token })
+      console.log(profileResponse)
       setIdeas(ideasResponse)
       setProfile(profileResponse)
     }
@@ -39,6 +40,7 @@ export default function Profile() {
 
   return (
     <div className='profile'>
+      {console.log(_id)}
       <Hero
         profilePicture={profile.profilePhotoUrl}
         backgroundPicture={profile.coverPhotoUrl}

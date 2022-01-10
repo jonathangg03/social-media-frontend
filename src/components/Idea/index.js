@@ -33,10 +33,7 @@ export default function Idea({ content, date, likes, user, imageUrl }) {
     <li className='idea'>
       <div className='idea__header'>
         <figure className='idea__header-image'>
-          <img
-            src={user.profilePhotoUrl || defaultProfilePhoto}
-            alt={user.name}
-          />
+          <img src={user.profilePhotoUrl || null} />
         </figure>
         <h3>{user.name}</h3>
         {location.pathname.includes('/profile') && params.id === user.id && (

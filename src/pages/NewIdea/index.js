@@ -9,6 +9,7 @@ import Ellipse1 from '../../../public/NewIdea/Ellipse1.png'
 import Ellipse2 from '../../../public/NewIdea/Ellipse2.png'
 import sendIdea from '../../services/sendIdea'
 import './index.scss'
+import getProfile from '../../services/getProfile'
 
 const mockProfile = {
   profilePicture: ProfilePicture,
@@ -24,10 +25,11 @@ const DRAG_IMAGE_STATES = {
 
 export default function NewIdea() {
   const navigate = useNavigate()
-  const { _id } = useContext(Context)
+  const { _id, token } = useContext(Context)
   const [drag, setDrag] = useState(DRAG_IMAGE_STATES.NONE)
   const [file, setFile] = useState(null) //Guardará el archivo a subir
   const [imgUrl, setImgUrl] = useState(null)
+  const [profilePhoto, setProfilePhoto] = useState('')
   const [content, setContent] = useState('')
 
   useEffect(() => {
@@ -39,6 +41,13 @@ export default function NewIdea() {
       reader.readAsDataURL(file)
     }
   }, [file])
+
+  useEffect(async () => {
+    if (token) {
+      const profile = await getProfile({ token: token })
+      setProfilePhoto(profile.profilePhotoUrl)
+    }
+  }, [token])
 
   const handleChangeContent = (e) => {
     setContent(e.target.value)
@@ -52,7 +61,7 @@ export default function NewIdea() {
       fd.append('postImage', e.target[1].files[0])
     }
     await sendIdea({ id: _id, content: fd })
-    navigate('/home')
+    navigate('/profile')
   }
 
   const handleChangeImage = (file) => {
@@ -95,11 +104,7 @@ export default function NewIdea() {
       <Logo />
       <div className='newIdea__wrapper'>
         <figure className='newIdea__profilePhoto'>
-          <img
-            src={mockProfile.profilePicture}
-            alt={mockProfile.name}
-            className='newIdea__profilePicture'
-          />
+          <img src={profilePhoto} className='newIdea__profilePicture' />
         </figure>
         <form onSubmit={handleSumbitItea}>
           <textarea

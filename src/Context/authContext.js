@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from 'react'
-import axios from 'axios'
 import { getCookie } from '../utils/cookies'
+import getProfile from '../services/getProfile'
 
 const Context = createContext({})
 
@@ -10,12 +10,8 @@ export function AuthContextProvider({ children }) {
 
   useEffect(async () => {
     if (jwt) {
-      const response = await axios.get('http://localhost:3001/user', {
-        headers: {
-          Authorization: `Bearer ${jwt}`
-        }
-      })
-      setProfile(response.data.body)
+      const response = await getProfile({ token: jwt })
+      setProfile(response)
     }
   }, [jwt])
 
