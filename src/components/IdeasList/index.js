@@ -7,7 +7,6 @@ export default function IdeaList({ ideas }) {
   }
   return (
     <ul className='Ideas'>
-      {console.log(ideas)}
       {ideas.map((idea) => {
         return <Idea key={idea._id} {...idea} />
       })}

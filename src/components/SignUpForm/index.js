@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import { HiXCircle } from 'react-icons/hi'
 import { setCookie } from '../../utils/cookies'
 import Context from '../../Context/authContext'
+import signUp from '../../services/sign-up'
+import signIn from '../../services/sign-in'
 import '../../styles/signForms.scss'
 
 export default function SignUpForm({ onClose, onOpenOtherModal }) {
@@ -16,20 +18,10 @@ export default function SignUpForm({ onClose, onOpenOtherModal }) {
       onSubmit={async (values) => {
         const { name, email, password } = values
         try {
-          await axios.post('http://localhost:3001/user', {
-            name,
-            email,
-            password
-          })
-          const response = await axios.post(
-            'http://localhost:3001/auth/sign-in',
-            {
-              email,
-              password
-            }
-          )
-          setCookie({ name: 'token', value: response.data.body.jwt })
-          setJwt(response.data.body.jwt)
+          await signUp({ name, email, password })
+          const jwt = await signIn({ email, password })
+          setCookie({ name: 'token', value: jwt })
+          setJwt(jwt)
           navigate('/home')
         } catch (error) {
           console.log(error.message)

@@ -4,17 +4,12 @@ import { useNavigate } from 'react-router-dom'
 import { HiX } from 'react-icons/hi'
 import Menu from '../../components/Menu'
 import Logo from '../../components/Logo'
-import ProfilePicture from '../../../public/ProfilePicture1.png'
+import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import Ellipse1 from '../../../public/NewIdea/Ellipse1.png'
 import Ellipse2 from '../../../public/NewIdea/Ellipse2.png'
 import sendIdea from '../../services/sendIdea'
 import './index.scss'
 import getProfile from '../../services/getProfile'
-
-const mockProfile = {
-  profilePicture: ProfilePicture,
-  name: 'Jonathan García González'
-}
 
 const DRAG_IMAGE_STATES = {
   ERROR: -1,
@@ -29,7 +24,7 @@ export default function NewIdea() {
   const [drag, setDrag] = useState(DRAG_IMAGE_STATES.NONE)
   const [file, setFile] = useState(null) //Guardará el archivo a subir
   const [imgUrl, setImgUrl] = useState(null)
-  const [profilePhoto, setProfilePhoto] = useState('')
+  const [profile, setProfile] = useState({})
   const [content, setContent] = useState('')
 
   useEffect(() => {
@@ -45,7 +40,7 @@ export default function NewIdea() {
   useEffect(async () => {
     if (token) {
       const profile = await getProfile({ token: token })
-      setProfilePhoto(profile.profilePhotoUrl)
+      setProfile(profile)
     }
   }, [token])
 
@@ -104,7 +99,13 @@ export default function NewIdea() {
       <Logo />
       <div className='newIdea__wrapper'>
         <figure className='newIdea__profilePhoto'>
-          <img src={profilePhoto} className='newIdea__profilePicture' />
+          {profile.profilePhotoUrl === undefined && <img src={null} />}
+          {profile.profilePhotoUrl === '' && (
+            <img src={defaultProfilePhoto} alt={profile.name} />
+          )}
+          {profile.profilePhotoUrl && profile.profilePhotoUrl.length > 0 && (
+            <img src={profile.profilePhotoUrl} alt={profile.name} />
+          )}
         </figure>
         <form onSubmit={handleSumbitItea}>
           <textarea

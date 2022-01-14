@@ -12,11 +12,11 @@ export default function Hero({
   profilePicture,
   backgroundPicture,
   name,
-  description,
-  id
+  description
 }) {
   const [openMenu, setOpenMenu] = useState(false)
   const navigate = useNavigate()
+  const { id } = useParams()
   const { setJwt, _id } = useContext(Context)
 
   const handleOpenMenu = (e) => {
@@ -29,9 +29,13 @@ export default function Hero({
     }
 
     if (e.target.textContent === 'Cerrar sesión') {
-      document.cookie = 'token=; max-age=0'
-      setJwt(null)
-      navigate('/')
+      try {
+        document.cookie = 'token=; max-age=0'
+        setJwt(null)
+        navigate('/')
+      } catch (error) {
+        console.log('Cookie not deleted: ', error.message)
+      }
     }
   }
 
@@ -40,16 +44,28 @@ export default function Hero({
     <div className='hero'>
       <div className='hero__wrapper'>
         <div className='hero__background-picture'>
-          <img src={backgroundPicture || null} />
+          {backgroundPicture === undefined && <img src={null} />}
+          {backgroundPicture === '' && (
+            <img src={DefaultCoverPhoto} alt={`${name} cover picture`} />
+          )}
+          {backgroundPicture && backgroundPicture.length > 0 && (
+            <img src={backgroundPicture} alt={name} />
+          )}
         </div>
         <div className='hero__information'>
           <figure className='hero__information-picture'>
-            <img src={profilePicture || null} />
+            {profilePicture === undefined && <img src={null} />}
+            {profilePicture === '' && (
+              <img src={DefaultProfilePhoto} alt={name} />
+            )}
+            {profilePicture && profilePicture.length > 0 && (
+              <img src={profilePicture} alt={name} />
+            )}
           </figure>
           <h2>{name}</h2>
           <p>{description}</p>
         </div>
-        {_id === id && (
+        {!id && (
           <>
             <div className='hero__menu-activator' onClick={handleOpenMenu}>
               <HiMenu />

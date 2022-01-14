@@ -1,43 +1,44 @@
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { Formik } from 'formik'
+import { Link } from 'react-router-dom'
+import Context from '../../Context/authContext'
 import Menu from '../../components/Menu'
 import Layout from '../../components/Layout'
 import getUsers from '../../services/getUsers'
-import ProfilePicture from '../../../public/ProfilePicture1.png'
+import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import './index.scss'
+import getProfile from '../../services/getProfile'
 
 export default function Search() {
-  // if (!localStorage.getItem('auth')) return <Navigate to='/' />
-  const [search, setSearch] = useState('')
   const [results, setResults] = useState(null)
+  const [profile, setProfile] = useState({})
+  const { _id, token } = useContext(Context)
 
-  const handleSearch = (e) => {
-    e.preventDefault()
-    if (search !== '') {
-      const newResults = PEOPLE.filter((person) => {
-        if (person.name.toLowerCase().includes(search.toLowerCase())) {
-          return person
-        }
-      })
-      setResults(newResults)
-    } else {
-      setResults(null)
+  useEffect(async () => {
+    if (token) {
+      const profileResponse = await getProfile({ token })
+      setProfile(profileResponse)
     }
-  }
+  }, [token])
 
   return (
     <Layout>
       <div className='Search'>
         <h2>Buscar persona</h2>
-        <div className='Search__profilePicture'>
-          <img src={ProfilePicture} alt='Maria Lopez Gomez' />
-        </div>
+        <figure className='Search__profilePicture'>
+          {profile.profilePhotoUrl === undefined && <img src={null} />}
+          {profile.profilePhotoUrl === '' && (
+            <img src={defaultProfilePhoto} alt={profile.name} />
+          )}
+          {profile.profilePhotoUrl && profile.profilePhotoUrl.length > 0 && (
+            <img src={profile.profilePhotoUrl} alt={profile.name} />
+          )}
+        </figure>
         <Formik
           initialValues={{ name: '' }}
           onSubmit={async (values) => {
             const { name } = values
             const response = await getUsers({ name })
-            console.log(response)
             setResults(response)
           }}
         >
@@ -62,10 +63,27 @@ export default function Search() {
               <>
                 <h4>Resultados</h4>
                 {results.map((person) => (
-                  <li key={person._id}>
-                    <img src={person.profilePhotoUrl || null} />
-                    <h3>{person.name}</h3>
-                  </li>
+                  <Link
+                    to={
+                      person._id === _id ? '/profile' : `/search/${person._id}`
+                    }
+                    key={person._id}
+                  >
+                    <li>
+                      {person.profilePhotoUrl === undefined && (
+                        <img src={null} />
+                      )}
+                      {person.profilePhotoUrl === '' && (
+                        <img src={defaultProfilePhoto} alt={person.name} />
+                      )}
+                      {person.profilePhotoUrl &&
+                        person.profilePhotoUrl.length > 0 && (
+                          <img src={person.profilePhotoUrl} alt={person.name} />
+                        )}
+
+                      <h3>{person.name}</h3>
+                    </li>
+                  </Link>
                 ))}
               </>
             )}

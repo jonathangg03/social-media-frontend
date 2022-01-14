@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
+import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
 import { FaGripHorizontal, FaTimes } from 'react-icons/fa'
 import Hero from '../../components/Hero'
 import IdeasList from '../../components/IdeasList'
@@ -9,48 +9,69 @@ import Context from '../../Context/authContext'
 import getIdeas from '../../services/getIdeas'
 import './index.scss'
 import getProfile from '../../services/getProfile'
+import getUser from '../../services/getUser'
+import followUser from '../../services/followUser'
 
 //ARREGLAR BOG DE NO MOSTRAR NOMBRE NI IDEAS
 
 export default function Profile() {
-  const location = useLocation()
+  const { id } = useParams()
   const { token, _id } = useContext(Context)
-  const [followed, setFollowed] = useState(false)
+  const [followed, setFollowed] = useState(null)
   const [ideas, setIdeas] = useState([])
-  const [profile, setProfile] = useState({
-    profilePhotoUrl: '',
-    coverPhotoUrl: '',
-    name: '',
-    description: ''
-  })
+  const [profile, setProfile] = useState({})
 
   useEffect(async () => {
-    if (_id && token) {
+    if (_id && token && !id) {
       const ideasResponse = await getIdeas({ id: _id })
       const profileResponse = await getProfile({ token })
-      console.log(profileResponse)
       setIdeas(ideasResponse)
       setProfile(profileResponse)
     }
-  }, [_id, token])
+  }, [_id, token, id])
 
-  const handleFollow = () => {
-    setFollowed(!followed)
+  useEffect(async () => {
+    if (id) {
+      const profileResponse = await getUser({ id })
+      const ideasResponse = await getIdeas({ id })
+      setProfile(profileResponse)
+      setIdeas(ideasResponse)
+    }
+  }, [id])
+
+  useEffect(async () => {
+    if (id && token) {
+      const profileResponse = await getProfile({ token })
+      if (profileResponse.followedPeople.includes(id)) {
+        setFollowed(true)
+      } else {
+        setFollowed(false)
+      }
+    }
+  }, [id, token])
+
+  const handleFollow = async () => {
+    try {
+      await followUser({ userId: _id, toFollow: id })
+      setFollowed(!followed)
+    } catch (error) {
+      console.error(error.message)
+    }
   }
 
   return (
     <div className='profile'>
-      {console.log(_id)}
       <Hero
         profilePicture={profile.profilePhotoUrl}
         backgroundPicture={profile.coverPhotoUrl}
         name={profile.name}
         description={profile.description}
-        id={_id}
       />
-      {location.pathname.includes('/search') && (
+      {id && followed !== null && (
         <button
-          className={`profile__follow-button ${followed ? 'followed' : ''}`}
+          className={`profile__follow-button ${
+            followed === true ? 'followed' : ''
+          }`}
           onClick={handleFollow}
         >
           {followed ? 'Siguiendo' : 'Seguir'}
