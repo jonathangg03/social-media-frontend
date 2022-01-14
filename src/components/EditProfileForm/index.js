@@ -4,16 +4,7 @@ import axios from 'axios'
 import Context from '../../Context/authContext'
 import getProfile from '../../services/getProfile'
 import { FaCamera } from 'react-icons/fa'
-import Cat from '../../../public/cat.jpg'
-import ProfilePicture from '../../../public/ProfilePicture1.png'
 import './index.scss'
-
-const mockProfile = {
-  profilePicture: ProfilePicture,
-  cover: Cat,
-  name: 'Jonathan García González',
-  description: 'Esto es tu descripción'
-}
 
 export default function editProfileForm() {
   const navigate = useNavigate()

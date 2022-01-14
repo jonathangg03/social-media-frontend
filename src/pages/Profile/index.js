@@ -1,18 +1,14 @@
 import { useState, useContext, useEffect } from 'react'
-import { Link, useNavigate, useLocation, useParams } from 'react-router-dom'
-import { FaGripHorizontal, FaTimes } from 'react-icons/fa'
+import { useParams } from 'react-router-dom'
 import Hero from '../../components/Hero'
 import IdeasList from '../../components/IdeasList'
 import Menu from '../../components/Menu'
-import Cat from '../../../public/cat.jpg'
 import Context from '../../Context/authContext'
 import getIdeas from '../../services/getIdeas'
 import './index.scss'
 import getProfile from '../../services/getProfile'
 import getUser from '../../services/getUser'
 import followUser from '../../services/followUser'
-
-//ARREGLAR BOG DE NO MOSTRAR NOMBRE NI IDEAS
 
 export default function Profile() {
   const { id } = useParams()
