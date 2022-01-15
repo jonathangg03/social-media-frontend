@@ -5,11 +5,13 @@ import Layout from '../../components/Layout'
 import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import Context from '../../Context/authContext'
 import getProfile from '../../services/getProfile'
+import getFollowedIdeas from '../../services/getFollowedIdeas'
 import './index.scss'
 
 export default function Home() {
-  const { token } = useContext(Context)
+  const { token, _id } = useContext(Context)
   const [profile, setProfile] = useState({})
+  const [ideas, setIdeas] = useState([])
 
   useEffect(async () => {
     if (token) {
@@ -17,6 +19,13 @@ export default function Home() {
       setProfile(profile)
     }
   }, [token])
+
+  useEffect(async () => {
+    if (_id) {
+      const ideas = await getFollowedIdeas({ id: _id })
+      setIdeas(ideas)
+    }
+  }, [_id])
 
   return (
     <Layout>
@@ -30,7 +39,7 @@ export default function Home() {
             <img src={profile.profilePhotoUrl} alt={profile.name} />
           )}
         </figure>
-        <IdeasList ideas={[]} />
+        <IdeasList ideas={ideas} />
         <Menu />
       </div>
     </Layout>
