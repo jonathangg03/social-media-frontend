@@ -1,23 +1,48 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useLocation, useParams } from 'react-router-dom'
 import {
   HiOutlineHeart,
   HiHeart,
   HiOutlineDotsHorizontal
 } from 'react-icons/hi'
+import Context from '../../Context/authContext'
 import Modal from '../Modal'
 import DeleteModalContent from '../DeleteModalContent'
 import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
+import likePost from '../../services/likePost'
 import './index.scss'
 
-export default function Idea({ content, date, likes, user, imageUrl }) {
+export default function Idea({
+  content,
+  date,
+  likes,
+  user,
+  imageUrl,
+  _id: postId
+}) {
   const [liked, setLiked] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
   const [openModal, setOpenModal] = useState(false)
+  const { _id } = useContext(Context)
   const location = useLocation()
   const params = useParams()
+  const [likesPost, setLikesPost] = useState(likes.length)
 
-  const handleClickLike = () => {
+  useEffect(() => {
+    if (_id && likes.includes(_id)) {
+      setLiked(true)
+    } else {
+      setLiked(false)
+    }
+  }, [_id])
+
+  const handleClickLike = async () => {
+    await likePost({ postId, userId: _id })
+    if (liked) {
+      setLikesPost(likesPost - 1)
+    } else {
+      setLikesPost(likesPost + 1)
+    }
     setLiked(!liked)
   }
 
@@ -63,7 +88,7 @@ export default function Idea({ content, date, likes, user, imageUrl }) {
           >
             {liked ? <HiHeart /> : <HiOutlineHeart />}
           </button>
-          {likes.length > 0 && <p>{likes.length}</p>}
+          {likesPost > 0 && <p>{likesPost}</p>}
         </div>
       </div>
       {location.pathname.includes('/profile') && params.id === user._id && (
