@@ -1,8 +1,13 @@
-.Logo__big {
-  display: flex;
-  justify-content: center;
-}
+.Logo {
+  width: 181px;
+  display: block;
+  .Logo__big {
+    display: flex;
+    justify-content: center;
+  }
 
-.Logo__sm {
-  padding-left: 25px;
+  .Logo__sm {
+    padding-left: 25px;
+    width: 181px;
+  }
 }
