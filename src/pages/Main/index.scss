@@ -17,6 +17,8 @@
     flex-direction: column;
     height: calc(100vh - 175px);
     justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
     button {
       @include mainButton();
     }
@@ -36,6 +38,27 @@
   }
   .c {
     left: 0%;
-    top: 80%;
+    top: 70%;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .main {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    header {
+      width: 45%;
+      h1 {
+        font-size: 4rem;
+      }
+    }
+    &__buttons {
+      height: auto;
+      width: 45%;
+      max-width: 680px;
+      margin: initial;
+    }
   }
 }

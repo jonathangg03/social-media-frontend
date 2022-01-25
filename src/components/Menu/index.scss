@@ -55,3 +55,16 @@
     border-color: $main;
   }
 }
+
+@media screen and (min-width: 769px) {
+  .menu {
+    height: calc(100% + 10px);
+    width: 68px;
+    left: initial;
+    right: 0;
+    flex-direction: column;
+    padding: 40px 0;
+    border-radius: 19px 0 0 19px;
+    min-height: 635px;
+  }
+}

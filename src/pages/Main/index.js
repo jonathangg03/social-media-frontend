@@ -1,5 +1,4 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import Logo from '../../components/Logo'
 import Modal from '../../components/Modal'
 import SignInForm from '../../components/SignInForm'
@@ -17,22 +16,6 @@ const TO_RENDER_MODAL = {
 export default function Main() {
   const [openModal, setOpenModal] = useState(false)
   const [modalContent, setModalContent] = useState(false)
-  // const navigate = useNavigate()
-
-  // useEffect(() => {
-  //   try {
-  //     const token = document.cookie
-  //       .split('; ')
-  //       .find((row) => row.startsWith('token='))
-  //       .split('=')[1]
-  //     if (token) {
-  //       console.log(token)
-  //       navigate('/home')
-  //     }
-  //   } catch (error) {
-  //     console.log('Authenticate error: ')
-  //   }
-  // }, [])
 
   const onOpenSignUpModal = (e) => {
     setOpenModal(true)

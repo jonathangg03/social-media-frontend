@@ -57,7 +57,7 @@
     justify-content: space-between;
     align-items: flex-end;
     &-date {
-      color: $gray;
+      color: $grayStrong;
       font-size: 1.4rem;
     }
     &-likes {
@@ -113,5 +113,14 @@
 
   .show-menu {
     display: flex;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .idea {
+    padding: 19px 35px;
+    // outline: 1px solid red;
+    max-width: 925px;
+    margin: 0 auto;
   }
 }
