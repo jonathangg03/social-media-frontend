@@ -121,5 +121,23 @@
   }
 }
 
-.textA::after {
+@media screen and (min-width: 769px) {
+  .newIdea {
+    width: calc(100% - 68px);
+    max-width: 630px;
+    margin: 0 auto;
+    &__wrapper {
+      padding: 0px 0 26px;
+    }
+
+    .ellipse.a {
+      left: 0;
+      top: -30px;
+    }
+
+    .ellipse.b {
+      right: 0;
+      bottom: 0;
+    }
+  }
 }
