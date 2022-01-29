@@ -8,6 +8,7 @@ import Profile from './pages/Profile'
 import { useContext } from 'react'
 import EditProfile from './pages/EditProfile'
 import NewIdea from './pages/NewIdea'
+import DeleteIdea from './pages/DeleteIdea'
 import NotFound from './pages/NotFound'
 import Context from './Context/authContext'
 
@@ -27,9 +28,10 @@ export default function App() {
             <Route path='/liked' element={<Liked />} />
             <Route path='/search' element={<Search />} />
             <Route path='/profile' element={<Profile />} />
-            <Route path='/search/:id/' element={<Profile />} />
+            <Route path='/search/:id' element={<Profile />} />
             <Route path='/profile/edit' element={<EditProfile />} />
             <Route path='/newIdea' element={<NewIdea />} />
+            <Route path='/delete/:id' element={<DeleteIdea />} />
             <Route path='*' element={<NotFound />} />
           </>
         ) : (

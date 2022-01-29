@@ -1,13 +1,11 @@
 import { useContext, useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useLocation, useParams, useNavigate } from 'react-router-dom'
 import {
   HiOutlineHeart,
   HiHeart,
   HiOutlineDotsHorizontal
 } from 'react-icons/hi'
 import Context from '../../Context/authContext'
-import Modal from '../Modal'
-import DeleteModalContent from '../DeleteModalContent'
 import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import likePost from '../../services/likePost'
 import './index.scss'
@@ -23,11 +21,11 @@ export default function Idea({
 }) {
   const [liked, setLiked] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
-  const [openModal, setOpenModal] = useState(false)
   const newDate = useTimeAgo(date)
   const { _id } = useContext(Context)
   const location = useLocation()
   const params = useParams()
+  const navigate = useNavigate()
   const [likesPost, setLikesPost] = useState(likes.length)
 
   useEffect(() => {
@@ -53,7 +51,7 @@ export default function Idea({
   }
 
   const handleOpenModal = () => {
-    setOpenModal(!openModal)
+    navigate(`/delete/${postId}`)
   }
 
   return (
@@ -106,13 +104,6 @@ export default function Idea({
           </section>
         </>
       )}
-      <Modal openModal={openModal}>
-        <DeleteModalContent
-          onClose={handleOpenModal}
-          id={postId}
-          closeMenu={handleOpenMenu}
-        />
-      </Modal>
     </li>
   )
 }

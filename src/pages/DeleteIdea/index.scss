@@ -1,0 +1,39 @@
+@import '../../styles/variables.scss';
+@import '../../styles/mixins.scss';
+
+.Delete {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  padding: 0 10px;
+  &__content {
+    background-color: #ffffff78;
+    border-radius: 12px;
+    border: 3px solid white;
+    position: relative;
+    top: calc(100% - 506px);
+    max-width: 640px;
+    padding: 41px 22px;
+    margin: 0 auto;
+    h2 {
+      font-size: 2.4rem;
+      font-family: $fontHeaders;
+      color: white;
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    &-button {
+      margin-top: 10px;
+      @include mainButton();
+    }
+
+    &-close {
+      color: white;
+      font-size: 3.5rem;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+    }
+  }
+}
