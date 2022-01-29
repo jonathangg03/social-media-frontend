@@ -93,19 +93,25 @@ export default function Idea({
           {likesPost > 0 && <p>{likesPost}</p>}
         </div>
       </div>
-      {location.pathname.includes('/profile') && params.id === user._id && (
+      {location.pathname.includes('/profile') && (
         <>
           <section className={`idea__menu ${openMenu && 'show-menu'}`}>
             <section>
               <button>Editar</button>
               <button onClick={handleOpenModal}>Eliminar</button>
             </section>
-            <button onClick={handleOpenMenu}>Cerrar menú</button>
+            <button type='button' onClick={handleOpenMenu}>
+              Cerrar menú
+            </button>
           </section>
         </>
       )}
       <Modal openModal={openModal}>
-        <DeleteModalContent onClose={handleOpenModal} />
+        <DeleteModalContent
+          onClose={handleOpenModal}
+          id={postId}
+          closeMenu={handleOpenMenu}
+        />
       </Modal>
     </li>
   )
