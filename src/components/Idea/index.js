@@ -11,6 +11,7 @@ import DeleteModalContent from '../DeleteModalContent'
 import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import likePost from '../../services/likePost'
 import './index.scss'
+import useTimeAgo from '../../hooks/useTimeAgo'
 
 export default function Idea({
   content,
@@ -23,6 +24,7 @@ export default function Idea({
   const [liked, setLiked] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
   const [openModal, setOpenModal] = useState(false)
+  const newDate = useTimeAgo(date)
   const { _id } = useContext(Context)
   const location = useLocation()
   const params = useParams()
@@ -80,7 +82,7 @@ export default function Idea({
         </div>
       )}
       <div className='idea__footer'>
-        <p className='idea__footer-date'>{date}</p>
+        <p className='idea__footer-date'>{newDate}</p>
         <div className='idea__footer-likes'>
           <button
             onClick={handleClickLike}
