@@ -2,6 +2,8 @@
 @import '../../styles/variables.scss';
 
 .NotFound {
+  padding: 20px;
+
   h2 {
     font-family: $fontHeaders;
     font-size: 3.2rem;
@@ -12,8 +14,14 @@
   &__content {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 175px);
+    margin-top: 20px;
+    width: 100%;
     justify-content: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
   .elipse {
     position: absolute;
@@ -30,5 +38,12 @@
   .c {
     left: 0%;
     top: 80%;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .NotFound {
+    max-width: 630px;
+    margin: 20px auto 0;
   }
 }

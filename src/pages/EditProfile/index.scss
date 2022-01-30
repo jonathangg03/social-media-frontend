@@ -2,19 +2,19 @@
 
 .editProfile {
   padding: 26px 0;
-  h2 {
-  }
-  .editProfile__link {
-    p {
-      span {
-      }
-    }
-  }
 
   .ellipse {
     position: absolute;
     top: 0;
     left: 0;
     z-index: -1;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .editProfile {
+    width: calc(100% - 68px);
+    max-width: 630px;
+    margin: 0 auto;
   }
 }

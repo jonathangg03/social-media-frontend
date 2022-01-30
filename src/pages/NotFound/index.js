@@ -4,7 +4,7 @@ import NotFoundImage from '../../../public/NotFoundImage.png'
 import Ellipse1 from '../../../public/Main/Ellipse1.png'
 import Ellipse2 from '../../../public/Main/Ellipse2.png'
 import Ellipse3 from '../../../public/Main/Ellipse3.png'
-import './main.scss'
+import './index.scss'
 
 export default function Home() {
   return (
