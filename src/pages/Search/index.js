@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Formik } from 'formik'
 import Menu from '../../components/Menu'
 import Layout from '../../components/Layout'
+import Spinner from '../../components/Spinner'
 import Head from '../../components/Head'
 import Context from '../../Context/authContext'
 import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
@@ -10,15 +11,25 @@ import getUsers from '../../services/getUsers'
 import getProfile from '../../services/getProfile'
 import './index.scss'
 
+const FETCH_STATES = {
+  ERROR: -1,
+  INITIAL: 0,
+  LOADING: 1,
+  COMPLETE: 2
+}
+
 export default function Search() {
+  const [fetchState, setFetchState] = useState(FETCH_STATES.INITIAL)
   const [results, setResults] = useState(null)
   const [profile, setProfile] = useState({})
   const { _id, token } = useContext(Context)
 
   useEffect(async () => {
     if (token) {
+      setFetchState(FETCH_STATES.LOADING)
       const profileResponse = await getProfile({ token })
       setProfile(profileResponse)
+      setFetchState(FETCH_STATES.COMPLETE)
     }
   }, [token])
 
@@ -43,9 +54,11 @@ export default function Search() {
           <Formik
             initialValues={{ name: '' }}
             onSubmit={async (values) => {
+              setFetchState(FETCH_STATES.LOADING)
               const { name } = values
               const response = await getUsers({ name })
               setResults(response)
+              setFetchState(FETCH_STATES.COMPLETE)
             }}
           >
             {({ handleChange, handleSubmit }) => (
@@ -103,6 +116,7 @@ export default function Search() {
           <Menu />
         </div>
       </Layout>
+      {fetchState === FETCH_STATES.LOADING && <Spinner />}
     </>
   )
 }

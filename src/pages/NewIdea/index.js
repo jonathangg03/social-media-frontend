@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { HiX } from 'react-icons/hi'
 import Menu from '../../components/Menu'
 import Logo from '../../components/Logo'
+import Spinner from '../../components/Spinner'
 import Head from '../../components/Head'
 import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import Ellipse1 from '../../../public/NewIdea/Ellipse1.png'
@@ -19,7 +20,15 @@ const DRAG_IMAGE_STATES = {
   COMPLETE: 2 // Cuando la imagen ya se subió
 }
 
+const FETCH_STATES = {
+  ERROR: -1,
+  INITIAL: 0,
+  LOADING: 1,
+  COMPLETE: 2
+}
+
 export default function NewIdea() {
+  const [fetchState, setFetchState] = useState(FETCH_STATES.INITIAL)
   const [drag, setDrag] = useState(DRAG_IMAGE_STATES.NONE)
   const [file, setFile] = useState(null)
   const [imgUrl, setImgUrl] = useState(null)
@@ -40,8 +49,10 @@ export default function NewIdea() {
 
   useEffect(async () => {
     if (token) {
+      setFetchState(FETCH_STATES.LOADING)
       const profile = await getProfile({ token: token })
       setProfile(profile)
+      setFetchState(FETCH_STATES.COMPLETE)
     }
   }, [token])
 
@@ -51,12 +62,15 @@ export default function NewIdea() {
 
   const handleSumbitItea = async (e) => {
     e.preventDefault()
+    setFetchState(FETCH_STATES.LOADING)
+
     const fd = new FormData()
     fd.append('content', content)
     if (e.target[1].files[0]) {
       fd.append('postImage', e.target[1].files[0])
     }
     await sendIdea({ id: _id, content: fd })
+    setFetchState(FETCH_STATES.COMPLETE)
     navigate('/profile')
   }
 
@@ -145,6 +159,7 @@ export default function NewIdea() {
         <Menu />
         <img src={Ellipse1} className='ellipse a' />
         <img src={Ellipse2} className='ellipse b' />
+        {fetchState === FETCH_STATES.LOADING && <Spinner />}
       </div>
     </>
   )

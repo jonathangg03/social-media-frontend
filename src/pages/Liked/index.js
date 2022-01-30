@@ -3,13 +3,22 @@ import Context from '../../Context/authContext'
 import Menu from '../../components/Menu'
 import IdeasList from '../../components/IdeasList'
 import Layout from '../../components/Layout'
+import Spinner from '../../components/Spinner'
 import Head from '../../components/Head'
 import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import getProfile from '../../services/getProfile'
 import getLikedIdeas from '../../services/getLikedIdeas'
 import './index.scss'
 
+const FETCH_STATES = {
+  ERROR: -1,
+  INITIAL: 0,
+  LOADING: 1,
+  COMPLETE: 2
+}
+
 export default function Liked() {
+  const [fetchState, setFetchState] = useState(FETCH_STATES.INITIAL)
   const { token, _id } = useContext(Context)
   const [profile, setProfile] = useState({})
   const [ideas, setIdeas] = useState([])
@@ -23,8 +32,10 @@ export default function Liked() {
 
   useEffect(async () => {
     if (_id) {
+      setFetchState(FETCH_STATES.LOADING)
       const ideas = await getLikedIdeas({ id: _id })
       setIdeas(ideas)
+      setFetchState(FETCH_STATES.COMPLETE)
     }
   }, [_id])
 
@@ -50,6 +61,7 @@ export default function Liked() {
           <Menu />
         </div>
       </Layout>
+      {fetchState === FETCH_STATES.LOADING && <Spinner />}
     </>
   )
 }

@@ -28,6 +28,10 @@
       @include mainButton();
     }
 
+    &-button[disabled] {
+      background-color: $main200;
+    }
+
     &-close {
       color: white;
       font-size: 3.5rem;

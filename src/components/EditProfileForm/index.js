@@ -1,14 +1,21 @@
 import { useState, useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import Spinner from '../../components/Spinner'
 import Context from '../../Context/authContext'
 import getProfile from '../../services/getProfile'
 import { FaCamera } from 'react-icons/fa'
 import './index.scss'
 
+const FETCH_STATES = {
+  ERROR: -1,
+  INITIAL: 0,
+  LOADING: 1,
+  COMPLETE: 2
+}
+
 export default function editProfileForm() {
-  const navigate = useNavigate()
-  const { token } = useContext(Context)
+  const [fetchState, setFetchState] = useState(FETCH_STATES.LOADING) //Para que desde el primer render esté el loading
   const [profile, setProfile] = useState({
     name: '',
     description: '',
@@ -17,10 +24,16 @@ export default function editProfileForm() {
   })
   const [profilePicture, setProfilePicture] = useState('')
   const [coverPicture, setCoverPicture] = useState('')
+  const navigate = useNavigate()
+  const { token } = useContext(Context)
 
   useEffect(async () => {
-    const user = await getProfile({ token })
-    setProfile(user)
+    if (token) {
+      setFetchState(FETCH_STATES.LOADING)
+      const user = await getProfile({ token })
+      setProfile(user)
+      setFetchState(FETCH_STATES.COMPLETE)
+    }
   }, [token])
 
   useEffect(() => {
@@ -65,12 +78,14 @@ export default function editProfileForm() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
+      setFetchState(FETCH_STATES.LOADING)
       const fd = new FormData()
       fd.append('name', profile.name)
       fd.append('description', profile.description)
       fd.append('profilePhoto', e.target[0].files[0])
       fd.append('coverPhoto', e.target[1].files[0])
       await axios.patch(`http://localhost:3001/user/${profile._id}`, fd)
+      setFetchState(FETCH_STATES.COMPLETE)
       navigate('/profile')
     } catch (error) {
       console.log(error.message)
@@ -78,50 +93,53 @@ export default function editProfileForm() {
   }
 
   return (
-    <form className='editProfileForm' onSubmit={handleSubmit}>
-      <div className='editProfileForm-item'>
-        <img src={profilePicture || null} />
-        <div className='editProfileForm-item-camera'>
-          <p>Actualizar</p>
-          <FaCamera />
+    <>
+      <form className='editProfileForm' onSubmit={handleSubmit}>
+        <div className='editProfileForm-item'>
+          <img src={profilePicture || null} />
+          <div className='editProfileForm-item-camera'>
+            <p>Actualizar</p>
+            <FaCamera />
+          </div>
+          <input
+            type='file'
+            onChange={handleChangeProfilePicture}
+            className='editProfileForm__file-input'
+            accept='.jpg,.png,.jpeg'
+            id='profilePicture'
+          />
+        </div>
+        <div className='editProfileForm-item cover'>
+          <img src={coverPicture || null} />
+          <div className='editProfileForm-item-camera cover'>
+            <p>Actualizar</p>
+            <FaCamera />
+          </div>
+          <input
+            type='file'
+            onChange={handleChangeCoverPicture}
+            className='editProfileForm__file-input cover'
+            accept='.jpg,.png,.jpeg'
+            id='profilePicture'
+          />
         </div>
         <input
-          type='file'
-          onChange={handleChangeProfilePicture}
-          className='editProfileForm__file-input'
-          accept='.jpg,.png,.jpeg'
-          id='profilePicture'
+          type='text'
+          placeholder='Nombre'
+          value={profile.name}
+          name='name'
+          onChange={handleInputTextChange}
         />
-      </div>
-      <div className='editProfileForm-item cover'>
-        <img src={coverPicture || null} />
-        <div className='editProfileForm-item-camera cover'>
-          <p>Actualizar</p>
-          <FaCamera />
-        </div>
         <input
-          type='file'
-          onChange={handleChangeCoverPicture}
-          className='editProfileForm__file-input cover'
-          accept='.jpg,.png,.jpeg'
-          id='profilePicture'
+          type='text'
+          placeholder='Descripción'
+          value={profile.description}
+          name='description'
+          onChange={handleInputTextChange}
         />
-      </div>
-      <input
-        type='text'
-        placeholder='Nombre'
-        value={profile.name}
-        name='name'
-        onChange={handleInputTextChange}
-      />
-      <input
-        type='text'
-        placeholder='Descripción'
-        value={profile.description}
-        name='description'
-        onChange={handleInputTextChange}
-      />
-      <button>Actualizar</button>
-    </form>
+        <button>Actualizar</button>
+      </form>
+      {fetchState === FETCH_STATES.LOADING && <Spinner />}
+    </>
   )
 }
