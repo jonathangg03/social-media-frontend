@@ -6,16 +6,18 @@ import './index.scss'
 
 export default function Logo({ big }) {
   return (
-    <Link to='/' className='Logo'>
+    <>
       {big ? (
-        <div className='Logo__big'>
-          <img src={LogoBig} alt='Miriio Logo' />
-        </div>
+        <Link to='/' className='Logo'>
+          <div className='Logo__big'>
+            <img src={LogoBig} alt='Miriio Logo' />
+          </div>
+        </Link>
       ) : (
         <div className='Logo__sm'>
           <img src={LogoSm} alt='Miriio Logo' />
         </div>
       )}
-    </Link>
+    </>
   )
 }

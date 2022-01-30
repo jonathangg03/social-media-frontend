@@ -1,6 +1,5 @@
 .Logo {
   width: 181px;
-  display: block;
   .Logo__big {
     display: flex;
     justify-content: center;
@@ -9,5 +8,11 @@
   .Logo__sm {
     padding-left: 25px;
     width: 181px;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .Logo {
+    display: block;
   }
 }
