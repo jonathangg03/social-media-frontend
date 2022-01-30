@@ -3,6 +3,7 @@ import Context from '../../Context/authContext'
 import Menu from '../../components/Menu'
 import IdeasList from '../../components/IdeasList'
 import Layout from '../../components/Layout'
+import Head from '../../components/Head'
 import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import getProfile from '../../services/getProfile'
 import getLikedIdeas from '../../services/getLikedIdeas'
@@ -28,21 +29,27 @@ export default function Liked() {
   }, [_id])
 
   return (
-    <Layout>
-      <div className='Liked'>
-        <h2>Publicaciones que te gustaron</h2>
-        <figure className='Liked__profilePicture'>
-          {profile.profilePhotoUrl === undefined && <img src={null} />}
-          {profile.profilePhotoUrl === '' && (
-            <img src={defaultProfilePhoto} alt={profile.name} />
-          )}
-          {profile.profilePhotoUrl && profile.profilePhotoUrl.length > 0 && (
-            <img src={profile.profilePhotoUrl} alt={profile.name} />
-          )}
-        </figure>
-        <IdeasList ideas={ideas} />
-        <Menu />
-      </div>
-    </Layout>
+    <>
+      <Head
+        title='Publicaciones que te gustaron'
+        desc='Página que muestra las publicaciones que le han gustado al usuario.'
+      />
+      <Layout>
+        <div className='Liked'>
+          <h2>Publicaciones que te gustaron</h2>
+          <figure className='Liked__profilePicture'>
+            {profile.profilePhotoUrl === undefined && <img src={null} />}
+            {profile.profilePhotoUrl === '' && (
+              <img src={defaultProfilePhoto} alt={profile.name} />
+            )}
+            {profile.profilePhotoUrl && profile.profilePhotoUrl.length > 0 && (
+              <img src={profile.profilePhotoUrl} alt={profile.name} />
+            )}
+          </figure>
+          <IdeasList ideas={ideas} />
+          <Menu />
+        </div>
+      </Layout>
+    </>
   )
 }

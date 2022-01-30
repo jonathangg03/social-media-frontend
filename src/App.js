@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useContext } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Main from './pages/Main'
 import Home from './pages/Home'
 import Liked from './pages/Liked'
 import Search from './pages/Search'
 import Profile from './pages/Profile'
-import { useContext } from 'react'
 import EditProfile from './pages/EditProfile'
 import NewIdea from './pages/NewIdea'
 import DeleteIdea from './pages/DeleteIdea'
@@ -14,9 +13,6 @@ import Context from './Context/authContext'
 
 export default function App() {
   const { token } = useContext(Context)
-  //A LA PRIMERA, NO SE MUESTRAN LOS DATOS
-  //POSIBLEMENTE PORQUE AL INICIO, EL CONTEXT NO TIENE LA COOKIE, Y AUN ASÍ LA ESTA
-  //iNTENTANDO LEER
 
   return (
     <BrowserRouter>
