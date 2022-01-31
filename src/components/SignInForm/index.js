@@ -1,13 +1,14 @@
-import axios from 'axios'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Formik } from 'formik'
 import { HiXCircle } from 'react-icons/hi'
+import signIn from '../../services/sign-in'
 import { setCookie } from '../../utils/cookies'
 import Context from '../../Context/authContext'
 import '../../styles/signForms.scss'
 
 export default function SignInForm({ onClose, onOpenOtherModal }) {
+  const [error, setError] = useState(null)
   const navigate = useNavigate()
   const { setJwt } = useContext(Context)
 
@@ -17,19 +18,14 @@ export default function SignInForm({ onClose, onOpenOtherModal }) {
       onSubmit={async (values) => {
         try {
           const { email, password } = values
-          const response = await axios.post(
-            'http://localhost:3001/auth/sign-in',
-            {
-              email,
-              password
-            }
-          )
-          setCookie({ name: 'token', value: response.data.body.jwt })
-          setJwt(response.data.body.jwt)
+          const response = await signIn({ email, password })
+          setCookie({ name: 'token', value: response })
+          setJwt(response)
           navigate('/home')
-          // location.replace('/home')
+          location.replace('/home')
         } catch (error) {
           console.log(error.message)
+          setError('Usuario o contraseña incorrecto')
         }
       }}
     >
@@ -54,6 +50,7 @@ export default function SignInForm({ onClose, onOpenOtherModal }) {
             <button className='signForm__button' disabled={isSubmitting}>
               Ingresar
             </button>
+            {error && <p className='signForm__error'>{error}</p>}
             <p className='signForm__cta'>
               ¿No tienes una cuenta?
               <button

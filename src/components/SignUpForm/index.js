@@ -1,5 +1,4 @@
-import axios from 'axios'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Formik } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import { HiXCircle } from 'react-icons/hi'
@@ -10,6 +9,7 @@ import signIn from '../../services/sign-in'
 import '../../styles/signForms.scss'
 
 export default function SignUpForm({ onClose, onOpenOtherModal }) {
+  const [error, setError] = useState(null)
   const navigate = useNavigate()
   const { setJwt } = useContext(Context)
   return (
@@ -25,6 +25,7 @@ export default function SignUpForm({ onClose, onOpenOtherModal }) {
           navigate('/home')
         } catch (error) {
           console.log(error.message)
+          setError('Ha ocurrido un error inesperado')
         }
       }}
     >
@@ -53,6 +54,7 @@ export default function SignUpForm({ onClose, onOpenOtherModal }) {
             <button className='signForm__button' disabled={isSubmitting}>
               Registrarse
             </button>
+            {error && <p className='signForm__error'>{error}</p>}
             <p className='signForm__cta'>
               ¿Ya tienes una cuenta?
               <button

@@ -47,7 +47,6 @@
 
   p {
     font-size: 1.6rem;
-    color: white;
     font-weight: 500;
     button {
       border: none;
@@ -58,6 +57,13 @@
       font-weight: 500;
       margin-left: 5px;
     }
+  }
+  &__cta {
+    color: white;
+  }
+  &__error {
+    color: red;
+    margin: -5px 0 18px;
   }
   &__close {
     color: white;
