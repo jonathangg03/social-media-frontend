@@ -88,6 +88,7 @@ export default function editProfileForm() {
       setFetchState(FETCH_STATES.COMPLETE)
       navigate('/profile')
     } catch (error) {
+      setFetchState(FETCH_STATES.ERROR)
       console.log(error.message)
     }
   }
@@ -138,6 +139,9 @@ export default function editProfileForm() {
           onChange={handleInputTextChange}
         />
         <button>Actualizar</button>
+        {fetchState === FETCH_STATES.ERROR && (
+          <p className='editProfileForm__error'>Ocurrio un error inesperado</p>
+        )}
       </form>
       {fetchState === FETCH_STATES.LOADING && <Spinner />}
     </>

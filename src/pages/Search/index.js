@@ -54,11 +54,15 @@ export default function Search() {
           <Formik
             initialValues={{ name: '' }}
             onSubmit={async (values) => {
-              setFetchState(FETCH_STATES.LOADING)
-              const { name } = values
-              const response = await getUsers({ name })
-              setResults(response)
-              setFetchState(FETCH_STATES.COMPLETE)
+              try {
+                setFetchState(FETCH_STATES.LOADING)
+                const { name } = values
+                const response = await getUsers({ name })
+                setResults(response)
+                setFetchState(FETCH_STATES.COMPLETE)
+              } catch (error) {
+                setFetchState(FETCH_STATES.ERROR)
+              }
             }}
           >
             {({ handleChange, handleSubmit }) => (
@@ -73,6 +77,9 @@ export default function Search() {
               </form>
             )}
           </Formik>
+          {fetchState === FETCH_STATES.ERROR && (
+            <p className='Search__error'>Ocurrio un error inesperado</p>
+          )}
           <section className='Search__results'>
             <ul>
               {results !== null && results.length === 0 && (

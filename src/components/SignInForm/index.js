@@ -22,7 +22,7 @@ export default function SignInForm({ onClose, onOpenOtherModal }) {
           setCookie({ name: 'token', value: response })
           setJwt(response)
           navigate('/home')
-          location.replace('/home')
+          // location.replace('/home')
         } catch (error) {
           console.log(error.message)
           setError('Usuario o contraseña incorrecto')

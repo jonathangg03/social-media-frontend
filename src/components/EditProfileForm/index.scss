@@ -84,4 +84,10 @@
     margin-top: 13px;
     @include mainButton();
   }
+
+  &__error {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: red;
+  }
 }

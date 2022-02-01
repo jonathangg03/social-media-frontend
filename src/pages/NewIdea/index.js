@@ -63,15 +63,18 @@ export default function NewIdea() {
   const handleSumbitItea = async (e) => {
     e.preventDefault()
     setFetchState(FETCH_STATES.LOADING)
-
-    const fd = new FormData()
-    fd.append('content', content)
-    if (e.target[1].files[0]) {
-      fd.append('postImage', e.target[1].files[0])
+    try {
+      const fd = new FormData()
+      fd.append('content', content)
+      if (e.target[1].files[0]) {
+        fd.append('postImage', e.target[1].files[0])
+      }
+      await sendIdea({ id: _id, content: fd })
+      setFetchState(FETCH_STATES.COMPLETE)
+      navigate('/profile')
+    } catch (error) {
+      setFetchState(FETCH_STATES.ERROR)
     }
-    await sendIdea({ id: _id, content: fd })
-    setFetchState(FETCH_STATES.COMPLETE)
-    navigate('/profile')
   }
 
   const handleChangeImage = (file) => {
@@ -154,6 +157,9 @@ export default function NewIdea() {
               onChange={handleFileInputChange}
             />
             <button>Publicar</button>
+            {fetchState === FETCH_STATES.ERROR && (
+              <p className='newIdea__error'>Ocurrio un error inesperado</p>
+            )}
           </form>
         </div>
         <Menu />

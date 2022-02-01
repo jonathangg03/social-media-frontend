@@ -80,6 +80,14 @@
       }
     }
   }
+
+  &__error {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: red;
+    padding: 0 25px;
+    margin-top: -25px;
+  }
 }
 
 @media screen and (min-width: 769px) {
