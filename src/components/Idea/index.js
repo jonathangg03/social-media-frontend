@@ -95,7 +95,6 @@ export default function Idea({
         <>
           <section className={`idea__menu ${openMenu && 'show-menu'}`}>
             <section>
-              <button>Editar</button>
               <button onClick={handleOpenModal}>Eliminar</button>
             </section>
             <button type='button' onClick={handleOpenMenu}>

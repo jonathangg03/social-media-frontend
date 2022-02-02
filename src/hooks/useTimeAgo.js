@@ -11,11 +11,11 @@ const DATE_UNITS = [
 
 const getDateDiffs = (timestamp) => {
   const now = Date.now()
-  const elapsed = (timestamp - now) / 1000 // diferencia entre hora actual y hora del devit
+  const elapsed = (now - timestamp) / 1000 // diferencia entre hora actual y hora del devit
   // le restamos mil para quitar los milisegundos al timestamp, y quedar solo con los segundos
   for (const [unit, secondsInUnit] of DATE_UNITS) {
-    if (Math.abs(elapsed) > secondsInUnit || unit === 'second') {
-      const value = Math.round(elapsed / secondsInUnit)
+    if (elapsed >= secondsInUnit || unit === 'second') {
+      const value = Math.floor(elapsed / secondsInUnit) * -1
       return { value, unit }
     }
   }

@@ -6,15 +6,17 @@
   width: 100vw;
   height: 100vh;
   padding: 0 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   &__content {
     background-color: #ffffff78;
     border-radius: 12px;
+    height: 359px;
     border: 3px solid white;
     position: relative;
-    top: calc(100% - 506px);
     max-width: 640px;
     padding: 41px 22px;
-    margin: 0 auto;
     h2 {
       font-size: 2.4rem;
       font-family: $fontHeaders;
@@ -39,5 +41,11 @@
       top: 5px;
       right: 5px;
     }
+  }
+
+  &__error {
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: red;
   }
 }

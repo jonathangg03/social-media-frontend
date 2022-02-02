@@ -25,7 +25,7 @@ export default function SignUpForm({ onClose, onOpenOtherModal }) {
           navigate('/home')
         } catch (error) {
           console.log(error.message)
-          setError('Ha ocurrido un error inesperado')
+          setError('Error al crear el usuario')
         }
       }}
     >
