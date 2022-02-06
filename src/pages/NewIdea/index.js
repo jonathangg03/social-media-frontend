@@ -66,7 +66,7 @@ export default function NewIdea() {
     try {
       const fd = new FormData()
       fd.append('content', content)
-      if (e.target[1].files[0]) {
+      if (e.target[1].files[0] && imgUrl) {
         fd.append('postImage', e.target[1].files[0])
       }
       await sendIdea({ id: _id, content: fd })
@@ -138,6 +138,7 @@ export default function NewIdea() {
               onDrop={handleDrop}
               onChange={handleChangeContent}
               className={`${drag === 1 && 'dragging'}`}
+              required
             ></textarea>
             {imgUrl && (
               <figure className='newIdea__image'>
