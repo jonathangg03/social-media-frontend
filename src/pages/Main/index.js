@@ -11,26 +11,23 @@ import './index.scss'
 
 const TO_RENDER_MODAL = {
   SignUp: 1,
-  SignIn: 0
+  SignIn: 2,
+  Closed: 0
 }
 
 export default function Main() {
-  const [openModal, setOpenModal] = useState(false)
-  const [modalContent, setModalContent] = useState(false)
+  const [modalContent, setModalContent] = useState(TO_RENDER_MODAL.Closed)
 
   const onOpenSignUpModal = (e) => {
-    setOpenModal(true)
     setModalContent(TO_RENDER_MODAL.SignUp)
   }
 
   const onOpenSignInModal = (e) => {
-    setOpenModal(true)
     setModalContent(TO_RENDER_MODAL.SignIn)
   }
 
   const onCloseModal = (e) => {
-    setOpenModal(false)
-    setModalContent(null)
+    setModalContent(TO_RENDER_MODAL.Closed)
   }
 
   return (
@@ -51,7 +48,7 @@ export default function Main() {
         <img src={Ellipse1} className='elipse a' />
         <img src={Ellipse2} className='elipse b' />
         <img src={Ellipse3} className='elipse c' />
-        <Modal openModal={openModal}>
+        <Modal openModal={modalContent}>
           {modalContent === TO_RENDER_MODAL.SignUp ? (
             <SignUpForm
               onClose={onCloseModal}
