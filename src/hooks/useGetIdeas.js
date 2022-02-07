@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import getFollowedIdeas from '../services/getFollowedIdeas'
 import getIdeas from '../services/getIdeas'
+import getLikedIdeas from '../services/getLikedIdeas'
 
 const FETCH_STATES = {
   ERROR: -1,
@@ -9,7 +10,7 @@ const FETCH_STATES = {
   COMPLETE: 2
 }
 
-export default function useGetIdeas({ id, user }) {
+export default function useGetIdeas({ id, user, liked }) {
   const [fetchState, setFetchState] = useState(FETCH_STATES.LOADING)
   const [ideas, setIdeas] = useState([])
 
@@ -19,6 +20,15 @@ export default function useGetIdeas({ id, user }) {
         if (user) {
           setFetchState(FETCH_STATES.LOADING)
           const ideas = await getIdeas({ id })
+          if (ideas.length === 0) {
+            setIdeas(false)
+          } else {
+            setIdeas(ideas)
+          }
+          setFetchState(FETCH_STATES.COMPLETE)
+        } else if (liked) {
+          setFetchState(FETCH_STATES.LOADING)
+          const ideas = await getLikedIdeas({ id })
           if (ideas.length === 0) {
             setIdeas(false)
           } else {

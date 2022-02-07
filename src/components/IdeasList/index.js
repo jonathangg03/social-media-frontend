@@ -9,7 +9,7 @@ export default function IdeaList({ ideas }) {
   }
 
   if (ideas === false) {
-    return <h2 className='no__ideas'>No se encontraron publicaciones</h2>
+    return <h3 className='no__ideas'>No se encontraron publicaciones</h3>
   }
 
   return (

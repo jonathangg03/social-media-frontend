@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import Context from '../../Context/authContext'
 import Menu from '../../components/Menu'
 import IdeasList from '../../components/IdeasList'
@@ -6,8 +6,8 @@ import Layout from '../../components/Layout'
 import Spinner from '../../components/Spinner'
 import Head from '../../components/Head'
 import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
-import getProfile from '../../services/getProfile'
-import getLikedIdeas from '../../services/getLikedIdeas'
+import useGetIdeas from '../../hooks/useGetIdeas'
+import useGetProfile from '../../hooks/useGetProfile'
 import './index.scss'
 
 const FETCH_STATES = {
@@ -18,26 +18,9 @@ const FETCH_STATES = {
 }
 
 export default function Liked() {
-  const [fetchState, setFetchState] = useState(FETCH_STATES.INITIAL)
   const { token, _id } = useContext(Context)
-  const [profile, setProfile] = useState({})
-  const [ideas, setIdeas] = useState([])
-
-  useEffect(async () => {
-    if (token) {
-      const profile = await getProfile({ token: token })
-      setProfile(profile)
-    }
-  }, [token])
-
-  useEffect(async () => {
-    if (_id) {
-      setFetchState(FETCH_STATES.LOADING)
-      const ideas = await getLikedIdeas({ id: _id })
-      setIdeas(ideas)
-      setFetchState(FETCH_STATES.COMPLETE)
-    }
-  }, [_id])
+  const { profile } = useGetProfile({ token })
+  const { ideas, fetchState } = useGetIdeas({ id: _id, liked: true })
 
   return (
     <>
