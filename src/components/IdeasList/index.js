@@ -2,9 +2,16 @@ import Idea from '../Idea'
 import './index.scss'
 
 export default function IdeaList({ ideas }) {
-  if (ideas.length === 0) {
+  if (ideas === null) {
+    return (
+      <p className='Idea-error'>Ocurrio un error al traer las publicaciones</p>
+    )
+  }
+
+  if (ideas === false) {
     return <h2 className='no__ideas'>No se encontraron publicaciones</h2>
   }
+
   return (
     <ul className='Ideas'>
       {ideas.map((idea) => {
