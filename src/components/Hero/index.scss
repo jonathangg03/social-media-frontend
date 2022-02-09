@@ -127,3 +127,23 @@
     display: flex;
   }
 }
+
+@media screen and (min-width: 769px) {
+  .hero {
+    max-width: 600px;
+    margin: 0 auto;
+    &__background-picture {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    &__information {
+      max-width: 600px;
+      margin: 0 auto;
+
+      margin: 0 auto;
+    }
+    .ellipse {
+      display: none;
+    }
+  }
+}

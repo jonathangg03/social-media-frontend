@@ -10,6 +10,8 @@ import getIdeas from '../../services/getIdeas'
 import getProfile from '../../services/getProfile'
 import getUser from '../../services/getUser'
 import followUser from '../../services/followUser'
+import Ellipse1 from '../../../public/Desktop/Ellipse1.png'
+import Ellipse2 from '../../../public/Desktop/Ellipse2.png'
 import './index.scss'
 
 const FETCH_STATES = {
@@ -94,6 +96,8 @@ export default function Profile() {
         )}
         <IdeasList ideas={ideas || []} />
         <Menu />
+        <img src={Ellipse1} className='profile__ellipsed a' />
+        <img src={Ellipse2} className='profile__ellipsed b' />
       </div>
       {fetchState === FETCH_STATES.LOADING && <Spinner />}
     </>

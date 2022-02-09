@@ -24,17 +24,19 @@
   }
   form {
     padding: 0 25px 31px;
+    max-width: 740px;
     input {
       display: block;
       width: 100%;
       border: none;
-      border-bottom: 1px solid $gray200;
+      // border-bottom: 1px solid $gray200;
       padding-bottom: 5px;
       font-family: $fontParagraph;
       font-size: 1.6rem;
       font-weight: 400;
       outline: none;
       margin-bottom: 16px;
+      background-color: transparent;
     }
 
     input::placeholder {

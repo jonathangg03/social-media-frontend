@@ -1,11 +1,11 @@
 import { createContext, useEffect, useState } from 'react'
-import { getCookie } from '../utils/cookies'
+import { getStorage } from '../utils/storage'
 import getProfile from '../services/getProfile'
 
 const Context = createContext({})
 
 export function AuthContextProvider({ children }) {
-  const [jwt, setJwt] = useState(() => getCookie({ name: 'token' } || null))
+  const [jwt, setJwt] = useState(() => getStorage({ name: 'token' } || null))
   const [profile, setProfile] = useState({})
 
   useEffect(async () => {

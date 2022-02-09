@@ -30,7 +30,7 @@ export default function Hero({
 
     if (e.target.textContent === 'Cerrar sesión') {
       try {
-        document.cookie = 'token=; max-age=0'
+        localStorage.removeItem('token')
         setJwt(null)
         navigate('/')
       } catch (error) {

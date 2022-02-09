@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Formik } from 'formik'
 import { HiXCircle } from 'react-icons/hi'
 import signIn from '../../services/sign-in'
-import { setCookie } from '../../utils/cookies'
+import { setStorage } from '../../utils/storage'
 import Context from '../../Context/authContext'
 import '../../styles/signForms.scss'
 
@@ -19,7 +19,7 @@ export default function SignInForm({ onClose, onOpenOtherModal }) {
         try {
           const { email, password } = values
           const response = await signIn({ email, password })
-          setCookie({ name: 'token', value: response })
+          setStorage({ name: 'token', value: response })
           setJwt(response)
           navigate('/home')
           // location.replace('/home')

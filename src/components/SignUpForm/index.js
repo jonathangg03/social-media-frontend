@@ -2,7 +2,7 @@ import { useContext, useState } from 'react'
 import { Formik } from 'formik'
 import { useNavigate } from 'react-router-dom'
 import { HiXCircle } from 'react-icons/hi'
-import { setCookie } from '../../utils/cookies'
+import { setStorage } from '../../utils/storage'
 import Context from '../../Context/authContext'
 import signUp from '../../services/sign-up'
 import signIn from '../../services/sign-in'
@@ -20,7 +20,7 @@ export default function SignUpForm({ onClose, onOpenOtherModal }) {
         try {
           await signUp({ name, email, password })
           const jwt = await signIn({ email, password })
-          setCookie({ name: 'token', value: jwt })
+          setStorage({ name: 'token', value: jwt })
           setJwt(jwt)
           navigate('/home')
         } catch (error) {

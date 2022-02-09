@@ -16,6 +16,7 @@ export default function Menu() {
           }
         >
           <HiHome />
+          <p>Inicio</p>
         </Link>
       </li>
       <li className='menu__item'>
@@ -26,6 +27,7 @@ export default function Menu() {
           }
         >
           <HiHeart />
+          <p>Favoritas</p>
         </Link>
       </li>
       <li
@@ -50,6 +52,7 @@ export default function Menu() {
           }
         >
           <HiSearch />
+          <p>Buscar</p>
         </Link>
       </li>
       <li className='menu__item'>
@@ -60,7 +63,11 @@ export default function Menu() {
           }
         >
           <HiUser />
+          <p>Perfil</p>
         </Link>
+      </li>
+      <li className='menu__item menu__newIdea-desktop'>
+        <Link to='/newIdea'>Nueva idea</Link>
       </li>
     </ul>
   )
