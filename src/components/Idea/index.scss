@@ -4,7 +4,6 @@
   position: relative;
   padding: 19px 25px;
   border-bottom: 1px solid $gray200;
-  background-color: white;
   &__header {
     display: flex;
     align-items: center;
@@ -121,5 +120,6 @@
     padding: 19px 35px;
     max-width: 600px;
     margin: 0 auto 15px;
+    background-color: white;
   }
 }
