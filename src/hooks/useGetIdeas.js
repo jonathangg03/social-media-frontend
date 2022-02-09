@@ -15,11 +15,12 @@ export default function useGetIdeas({ id, user, liked }) {
   const [ideas, setIdeas] = useState([])
 
   useEffect(async () => {
-    if (id) {
+    if (id || user || liked) {
       try {
         if (user) {
+          //Para conseguir las ideas de un usuario, dar valor a user
           setFetchState(FETCH_STATES.LOADING)
-          const ideas = await getIdeas({ id })
+          const ideas = await getIdeas({ id: user })
           if (ideas.length === 0) {
             setIdeas(false)
           } else {
@@ -27,8 +28,9 @@ export default function useGetIdeas({ id, user, liked }) {
           }
           setFetchState(FETCH_STATES.COMPLETE)
         } else if (liked) {
+          //Para conseguir las ideas con like, dar valor a liked
           setFetchState(FETCH_STATES.LOADING)
-          const ideas = await getLikedIdeas({ id })
+          const ideas = await getLikedIdeas({ id: liked })
           if (ideas.length === 0) {
             setIdeas(false)
           } else {
@@ -36,6 +38,7 @@ export default function useGetIdeas({ id, user, liked }) {
           }
           setFetchState(FETCH_STATES.COMPLETE)
         } else {
+          //Sí se desea obtener las ideas de usuarios seguidos, dar valor a id
           setFetchState(FETCH_STATES.LOADING)
           const ideas = await getFollowedIdeas({ id })
 
@@ -53,7 +56,7 @@ export default function useGetIdeas({ id, user, liked }) {
         setFetchState(FETCH_STATES.ERROR)
       }
     }
-  }, [id])
+  }, [id, liked, user])
 
   return {
     fetchState,

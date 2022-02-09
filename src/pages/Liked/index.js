@@ -5,10 +5,10 @@ import IdeasList from '../../components/IdeasList'
 import Layout from '../../components/Layout'
 import Spinner from '../../components/Spinner'
 import Head from '../../components/Head'
-import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import useGetIdeas from '../../hooks/useGetIdeas'
 import useGetProfile from '../../hooks/useGetProfile'
 import './index.scss'
+import ProfilePhoto from '../../components/ProfilePhoto'
 
 const FETCH_STATES = {
   ERROR: -1,
@@ -20,7 +20,7 @@ const FETCH_STATES = {
 export default function Liked() {
   const { token, _id } = useContext(Context)
   const { profile } = useGetProfile({ token })
-  const { ideas, fetchState } = useGetIdeas({ id: _id, liked: true })
+  const { ideas, fetchState } = useGetIdeas({ liked: _id })
 
   return (
     <>
@@ -31,15 +31,7 @@ export default function Liked() {
       <Layout>
         <div className='Liked'>
           <h2>Publicaciones que te gustaron</h2>
-          <figure className='Liked__profilePicture'>
-            {profile.profilePhotoUrl === undefined && <img src={null} />}
-            {profile.profilePhotoUrl === '' && (
-              <img src={defaultProfilePhoto} alt={profile.name} />
-            )}
-            {profile.profilePhotoUrl && profile.profilePhotoUrl.length > 0 && (
-              <img src={profile.profilePhotoUrl} alt={profile.name} />
-            )}
-          </figure>
+          <ProfilePhoto profile={profile} />
           <IdeasList ideas={ideas} />
           <Menu />
         </div>

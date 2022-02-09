@@ -1,5 +1,5 @@
-@import '../../styles/variables.scss';
-@import '../../styles/mixins.scss';
+@import './variables.scss';
+@import './mixins.scss';
 
 .profile {
   padding-bottom: 50px;
@@ -19,6 +19,12 @@
       $color: $main
     );
   }
+
+  &__follow-button[disabled] {
+    border: 1px solid transparent;
+    background-color: $main200;
+    color: white;
+  }
   &__ellipse {
     position: absolute;
     top: 0;
@@ -35,7 +41,7 @@
     width: calc(100% - 68px);
     &__ellipsed {
       display: initial;
-      position: absolute;
+      position: fixed;
       top: 0;
       z-index: -1;
     }

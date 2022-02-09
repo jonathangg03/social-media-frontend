@@ -3,7 +3,8 @@
 .idea {
   position: relative;
   padding: 19px 25px;
-  border-bottom: 10px solid $gray200;
+  border-bottom: 1px solid $gray200;
+  background-color: white;
   &__header {
     display: flex;
     align-items: center;
@@ -78,7 +79,6 @@
         font-weight: 600;
       }
       .like {
-        // color: $main;
         color: #f23b5e;
         transition: 0.3s;
       }
@@ -119,8 +119,7 @@
 @media screen and (min-width: 769px) {
   .idea {
     padding: 19px 35px;
-    // outline: 1px solid red;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 15px;
   }
 }

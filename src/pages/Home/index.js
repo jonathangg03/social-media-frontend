@@ -4,11 +4,11 @@ import IdeasList from '../../components/IdeasList'
 import Layout from '../../components/Layout'
 import Spinner from '../../components/Spinner'
 import Head from '../../components/Head'
-import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import Context from '../../Context/authContext'
 import useGetProfile from '../../hooks/useGetProfile'
 import useGetIdeas from '../../hooks/useGetIdeas'
 import './index.scss'
+import ProfilePhoto from '../../components/ProfilePhoto'
 
 const FETCH_STATES = {
   ERROR: -1,
@@ -30,15 +30,7 @@ export default function Home() {
       />
       <Layout>
         <div className='Home'>
-          <figure className='Home__profilePicture'>
-            {profile.profilePhotoUrl === undefined && <img src={null} />}
-            {profile.profilePhotoUrl === '' && (
-              <img src={defaultProfilePhoto} alt={profile.name} />
-            )}
-            {profile.profilePhotoUrl && profile.profilePhotoUrl.length > 0 && (
-              <img src={profile.profilePhotoUrl} alt={profile.name} />
-            )}
-          </figure>
+          <ProfilePhoto profile={profile} />
           <IdeasList ideas={ideas} />
           <Menu />
         </div>
