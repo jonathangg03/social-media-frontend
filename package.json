@@ -4,8 +4,8 @@
   "description": "A social media proyect in React with Webpack",
   "main": "./src/index.js",
   "scripts": {
-    "dev": "webpack serve --mode=development",
-    "build": "webpack --mode=production"
+    "build": "webpack --mode=production",
+    "dev": "webpack serve --mode=development --env file=development"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
     "axios": "^0.22.0",
+    "dotenv-webpack": "^7.1.0",
     "formik": "^2.2.9",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
