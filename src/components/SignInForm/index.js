@@ -18,9 +18,9 @@ export default function SignInForm({ onClose, onOpenOtherModal }) {
       onSubmit={async (values) => {
         try {
           const { email, password } = values
-          const response = await signIn({ email, password })
-          setStorage({ name: 'token', value: response })
-          setJwt(response)
+          const response = await signIn({ email, password }) // MAKE SIGNin
+          setStorage({ name: 'token', value: response }) // SAVE TOKEN ON LOCAL STORAGE
+          setJwt(response) // SET TOKEN ON CONTEXT
           navigate('/home')
           // location.replace('/home')
         } catch (error) {

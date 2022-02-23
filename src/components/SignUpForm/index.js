@@ -12,16 +12,17 @@ export default function SignUpForm({ onClose, onOpenOtherModal }) {
   const [error, setError] = useState(null)
   const navigate = useNavigate()
   const { setJwt } = useContext(Context)
+
   return (
     <Formik
       initialValues={{ name: '', email: '', password: '' }}
       onSubmit={async (values) => {
         const { name, email, password } = values
         try {
-          await signUp({ name, email, password })
-          const jwt = await signIn({ email, password })
-          setStorage({ name: 'token', value: jwt })
-          setJwt(jwt)
+          await signUp({ name, email, password }) // MAKE SIGNUP
+          const jwt = await signIn({ email, password }) // MAKE SIGNIN, TO STAY LOGGED ONCE YOU SIGNED UP
+          setStorage({ name: 'token', value: jwt }) // SAVE TOKEN ON LOCAL STORAGE
+          setJwt(jwt) //SET TOKEN ON CONTEXT
           navigate('/home')
         } catch (error) {
           console.log(error.message)
