@@ -19,14 +19,17 @@ export default function Main() {
   const [modalContent, setModalContent] = useState(TO_RENDER_MODAL.Closed)
 
   const onOpenSignUpModal = (e) => {
+    //OPEN SIGNUP MODAL
     setModalContent(TO_RENDER_MODAL.SignUp)
   }
 
   const onOpenSignInModal = (e) => {
+    //OPEN SIGNIN MODAL
     setModalContent(TO_RENDER_MODAL.SignIn)
   }
 
   const onCloseModal = (e) => {
+    //CLOSE MODAL
     setModalContent(TO_RENDER_MODAL.Closed)
   }
 
@@ -49,6 +52,7 @@ export default function Main() {
         <img src={Ellipse2} className='elipse b' />
         <img src={Ellipse3} className='elipse c' />
         <Modal openModal={modalContent}>
+          {/* DEFINE IF SEND TO MODAL THE SIGNUP OR SIGNIN MODAL */}
           {modalContent === TO_RENDER_MODAL.SignUp ? (
             <SignUpForm
               onClose={onCloseModal}
