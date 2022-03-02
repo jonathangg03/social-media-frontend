@@ -1,9 +1,3 @@
-import { useState, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-import Spinner from '../../components/Spinner'
-import Context from '../../Context/authContext'
-import useGetProfile from '../../hooks/useGetProfile'
 import { FaCamera } from 'react-icons/fa'
 import './index.scss'
 
@@ -14,37 +8,26 @@ const FETCH_STATES = {
   COMPLETE: 2
 }
 
-export default function editProfileForm() {
-  const [fetchState, setFetchState] = useState(FETCH_STATES.INITIAL) //Para que desde el primer render esté el loading
-  const navigate = useNavigate()
-  const { token } = useContext(Context)
-  const { profile, handleInputTextChange, handleInputImageChange } =
-    useGetProfile({ token })
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    try {
-      setFetchState(FETCH_STATES.LOADING)
-      const fd = new FormData()
-      fd.append('name', profile.name)
-      fd.append('description', profile.description)
-      fd.append('profilePhoto', e.target[0].files[0])
-      fd.append('coverPhoto', e.target[1].files[0])
-      await axios.patch(`http://localhost:3001/user/${profile._id}`, fd)
-      setFetchState(FETCH_STATES.COMPLETE)
-      navigate('/profile')
-    } catch (error) {
-      setFetchState(FETCH_STATES.ERROR)
-    }
-  }
-
+export default function editProfileForm({
+  handleSubmit,
+  fetchState,
+  handleInputTextChange,
+  handleInputImageChange,
+  profile
+}) {
   return (
     <>
-      <form className='editProfileForm' onSubmit={handleSubmit}>
+      <form
+        className='editProfileForm'
+        onSubmit={(event) => {
+          console.log(event)
+          handleSubmit(event)
+        }}
+      >
         <div className='editProfileForm-item'>
           <img src={profile?.profilePhotoUrl || null} />
           <div className='editProfileForm-item-camera'>
-            <p>Actualizar</p>
+            <p>Cambiar</p>
             <FaCamera />
           </div>
           <input
@@ -58,7 +41,7 @@ export default function editProfileForm() {
         <div className='editProfileForm-item cover'>
           <img src={profile?.coverPhotoUrl || null} />
           <div className='editProfileForm-item-camera cover'>
-            <p>Actualizar</p>
+            <p>Cambiar</p>
             <FaCamera />
           </div>
           <input
@@ -88,7 +71,6 @@ export default function editProfileForm() {
           <p className='editProfileForm__error'>Ocurrio un error inesperado</p>
         )}
       </form>
-      {fetchState === FETCH_STATES.LOADING && <Spinner />}
     </>
   )
 }
