@@ -33,7 +33,7 @@ export default function Profile() {
           name={profile.name}
           description={profile.description}
         />
-        <IdeasList ideas={ideas || []} />
+        <IdeasList ideas={ideas} />
         <Menu />
         <img src={Ellipse1} className='profile__ellipsed a' />
         <img src={Ellipse2} className='profile__ellipsed b' />
