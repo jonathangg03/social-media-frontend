@@ -1,15 +1,12 @@
-import { useContext, useEffect, useState } from 'react'
-import { useLocation, useParams, useNavigate } from 'react-router-dom'
-import {
-  HiOutlineHeart,
-  HiHeart,
-  HiOutlineDotsHorizontal
-} from 'react-icons/hi'
+import { useContext, useState } from 'react'
+import { useLocation, useParams } from 'react-router-dom'
+import { HiOutlineDotsHorizontal } from 'react-icons/hi'
 import Context from '../../Context/authContext'
 import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
-import likePost from '../../services/likePost'
-import './index.scss'
 import useTimeAgo from '../../hooks/useTimeAgo'
+import LikedButton from '../LikedButton'
+import IdeaMenu from '../IdeaMenu'
+import './index.scss'
 
 export default function Idea({
   content,
@@ -19,39 +16,14 @@ export default function Idea({
   imageUrl,
   _id: postId
 }) {
-  const [liked, setLiked] = useState(false)
   const [openMenu, setOpenMenu] = useState(false)
   const newDate = useTimeAgo(date)
   const { _id } = useContext(Context)
   const location = useLocation()
   const params = useParams()
-  const navigate = useNavigate()
-  const [likesPost, setLikesPost] = useState(likes.length)
-
-  useEffect(() => {
-    if (_id && likes.includes(_id)) {
-      setLiked(true)
-    } else {
-      setLiked(false)
-    }
-  }, [_id])
-
-  const handleClickLike = async () => {
-    await likePost({ postId, userId: _id })
-    if (liked) {
-      setLikesPost(likesPost - 1)
-    } else {
-      setLikesPost(likesPost + 1)
-    }
-    setLiked(!liked)
-  }
 
   const handleOpenMenu = (e) => {
     setOpenMenu(!openMenu)
-  }
-
-  const handleOpenModal = () => {
-    navigate(`/delete/${postId}`)
   }
 
   return (
@@ -81,27 +53,14 @@ export default function Idea({
       )}
       <div className='idea__footer'>
         <p className='idea__footer-date'>{newDate}</p>
-        <div className='idea__footer-likes'>
-          <button
-            onClick={handleClickLike}
-            className={`idea__footer-like ${liked ? 'like' : ''}`}
-          >
-            {liked ? <HiHeart /> : <HiOutlineHeart />}
-          </button>
-          {likesPost > 0 && <p>{likesPost}</p>}
-        </div>
+        <LikedButton likes={likes} userId={_id} postId={postId} />
       </div>
       {location.pathname.includes('/profile') && (
-        <>
-          <section className={`idea__menu ${openMenu && 'show-menu'}`}>
-            <section>
-              <button onClick={handleOpenModal}>Eliminar</button>
-            </section>
-            <button type='button' onClick={handleOpenMenu}>
-              Cerrar menú
-            </button>
-          </section>
-        </>
+        <IdeaMenu
+          postId={postId}
+          openMenu={openMenu}
+          handleOpenMenu={handleOpenMenu}
+        />
       )}
     </li>
   )
