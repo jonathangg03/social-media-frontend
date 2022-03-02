@@ -7,8 +7,8 @@ import Head from '../../components/Head'
 import Context from '../../Context/authContext'
 import useGetProfile from '../../hooks/useGetProfile'
 import useGetIdeas from '../../hooks/useGetIdeas'
-import './index.scss'
 import ProfilePhoto from '../../components/ProfilePhoto'
+import './index.scss'
 
 const FETCH_STATES = {
   ERROR: -1,
@@ -30,7 +30,10 @@ export default function Home() {
       />
       <Layout>
         <div className='Home'>
-          <ProfilePhoto profile={profile} />
+          <ProfilePhoto
+            profilePhotoUrl={profile.profilePhotoUrl}
+            name={profile.name}
+          />
           <IdeasList ideas={ideas} />
           <Menu />
         </div>
