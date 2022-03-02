@@ -7,8 +7,8 @@ import Spinner from '../../components/Spinner'
 import Head from '../../components/Head'
 import useGetIdeas from '../../hooks/useGetIdeas'
 import useGetProfile from '../../hooks/useGetProfile'
-import './index.scss'
 import ProfilePhoto from '../../components/ProfilePhoto'
+import './index.scss'
 
 const FETCH_STATES = {
   ERROR: -1,
@@ -31,7 +31,10 @@ export default function Liked() {
       <Layout>
         <div className='Liked'>
           <h2>Publicaciones que te gustaron</h2>
-          <ProfilePhoto profile={profile} />
+          <ProfilePhoto
+            profilePhotoUrl={profile.profilePhotoUrl}
+            name={profile.name}
+          />
           <IdeasList ideas={ideas} />
           <Menu />
         </div>
