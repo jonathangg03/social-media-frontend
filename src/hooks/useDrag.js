@@ -23,11 +23,15 @@ export default function useDrag({ action }) {
     setDrag(DRAG_IMAGE_STATES.NONE)
   }
 
-  const handleDrop = (e) => {
+  const handleDrop = (event) => {
     //Cuando el achivo está colocado por haberlo soltado
-    e.preventDefault()
+    event.preventDefault()
     setDrag(DRAG_IMAGE_STATES.NONE)
-    action(e)
+    const file = event.dataTransfer.files[0]
+    if (file.type.includes('image/')) {
+      //Validamos su elemento type para asegurarnos que sea una imagen
+      action(event)
+    }
   }
 
   return {
