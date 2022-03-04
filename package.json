@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack --mode=production",
     "dev": "webpack serve --config ./webpack.config.dev.js --mode=development --env file=development",
-    "test": "jest --env=jsdom --watch"
+    "test": "jest --env=jsdom --watch",
+    "test:coverage": "jest --env=jsdom --coverage"
   },
   "repository": {
     "type": "git",

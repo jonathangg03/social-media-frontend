@@ -20,7 +20,6 @@ export default function editProfileForm({
       <form
         className='editProfileForm'
         onSubmit={(event) => {
-          console.log(event)
           handleSubmit(event)
         }}
       >
@@ -36,6 +35,7 @@ export default function editProfileForm({
             className='editProfileForm__file-input'
             accept='.jpg,.png,.jpeg'
             name='profilePhotoUrl'
+            aria-label='profilePhotoUrl'
           />
         </div>
         <div className='editProfileForm-item cover'>
@@ -50,6 +50,7 @@ export default function editProfileForm({
             className='editProfileForm__file-input cover'
             accept='.jpg,.png,.jpeg'
             name='coverPhotoUrl'
+            aria-label='coverPhotoUrl'
           />
         </div>
         <input
