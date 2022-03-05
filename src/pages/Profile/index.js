@@ -11,6 +11,7 @@ import useGetIdeas from '../../hooks/useGetIdeas'
 import useGetProfile from '../../hooks/useGetProfile'
 import { useNavigate } from 'react-router-dom'
 import '../../styles/profiles.scss'
+import useOpenMenu from '../../hooks/useOpenMenu'
 
 const FETCH_STATES = {
   ERROR: -1,
@@ -24,6 +25,7 @@ export default function Profile() {
   const { profile } = useGetProfile({ token })
   const { fetchState, ideas } = useGetIdeas({ user: _id })
   const navigate = useNavigate()
+  const { openMenu, handleOpenMenu } = useOpenMenu()
 
   const handleNavigate = (e) => {
     if (e.target.textContent === 'Editar perfil') {
@@ -51,6 +53,8 @@ export default function Profile() {
           name={profile.name}
           description={profile.description}
           handleNavigate={handleNavigate}
+          openMenu={openMenu}
+          handleOpenMenu={handleOpenMenu}
         />
         <IdeasList ideas={ideas} />
         <Menu />

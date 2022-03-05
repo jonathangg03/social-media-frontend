@@ -11,6 +11,7 @@ import Ellipse2 from '../../../public/Desktop/Ellipse2.png'
 import useGetIdeas from '../../hooks/useGetIdeas'
 import useGetProfile from '../../hooks/useGetProfile'
 import useFollow from '../../hooks/useFollow'
+import useOpenMenu from '../../hooks/useOpenMenu'
 import '../../styles/profiles.scss'
 
 const FETCH_STATES = {
@@ -30,6 +31,7 @@ export default function SearchedProfile() {
     profileId: id,
     token
   })
+  const { openMenu, handleOpenMenu } = useOpenMenu()
 
   return (
     <>
@@ -40,6 +42,9 @@ export default function SearchedProfile() {
           backgroundPicture={profile.coverPhotoUrl}
           name={profile.name}
           description={profile.description}
+          id={id}
+          openMenu={openMenu}
+          handleOpenMenu={handleOpenMenu}
         />
         <button
           className={`profile__follow-button ${
