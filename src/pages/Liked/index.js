@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useLocation } from 'react-router-dom'
 import Context from '../../Context/authContext'
 import Menu from '../../components/Menu'
 import IdeasList from '../../components/IdeasList'
@@ -21,6 +22,7 @@ export default function Liked() {
   const { token, _id } = useContext(Context)
   const { profile } = useGetProfile({ token })
   const { ideas, fetchState } = useGetIdeas({ liked: _id })
+  const location = useLocation()
 
   return (
     <>
@@ -35,7 +37,7 @@ export default function Liked() {
             profilePhotoUrl={profile.profilePhotoUrl}
             name={profile.name}
           />
-          <IdeasList ideas={ideas} />
+          <IdeasList ideas={ideas} _id={_id} location={location} />
           <Menu />
         </div>
       </Layout>

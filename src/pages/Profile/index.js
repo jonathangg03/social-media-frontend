@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import Hero from '../../components/Hero'
 import IdeasList from '../../components/IdeasList'
 import Menu from '../../components/Menu'
@@ -9,7 +10,6 @@ import Ellipse1 from '../../../public/Desktop/Ellipse1.png'
 import Ellipse2 from '../../../public/Desktop/Ellipse2.png'
 import useGetIdeas from '../../hooks/useGetIdeas'
 import useGetProfile from '../../hooks/useGetProfile'
-import { useNavigate } from 'react-router-dom'
 import '../../styles/profiles.scss'
 import useOpenMenu from '../../hooks/useOpenMenu'
 
@@ -26,6 +26,7 @@ export default function Profile() {
   const { fetchState, ideas } = useGetIdeas({ user: _id })
   const navigate = useNavigate()
   const { openMenu, handleOpenMenu } = useOpenMenu()
+  const location = useLocation()
 
   const handleNavigate = (e) => {
     if (e.target.textContent === 'Editar perfil') {
@@ -55,8 +56,9 @@ export default function Profile() {
           handleNavigate={handleNavigate}
           openMenu={openMenu}
           handleOpenMenu={handleOpenMenu}
+          _id={_id}
         />
-        <IdeasList ideas={ideas} />
+        <IdeasList ideas={ideas} location={location} _id={_id} />
         <Menu />
         <img src={Ellipse1} className='profile__ellipsed a' />
         <img src={Ellipse2} className='profile__ellipsed b' />

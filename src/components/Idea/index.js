@@ -1,7 +1,4 @@
-import { useContext, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
 import { HiOutlineDotsHorizontal } from 'react-icons/hi'
-import Context from '../../Context/authContext'
 import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import useTimeAgo from '../../hooks/useTimeAgo'
 import LikedButton from '../LikedButton'
@@ -14,17 +11,13 @@ export default function Idea({
   likes,
   user,
   imageUrl,
-  _id: postId
+  _id: postId,
+  handleOpenMenu,
+  openMenu,
+  _id,
+  location
 }) {
-  const [openMenu, setOpenMenu] = useState(false)
   const newDate = useTimeAgo(date)
-  const { _id } = useContext(Context)
-  const location = useLocation()
-  const params = useParams()
-
-  const handleOpenMenu = (e) => {
-    setOpenMenu(!openMenu)
-  }
 
   return (
     <li className='idea'>
@@ -39,7 +32,7 @@ export default function Idea({
           )}
         </figure>
         <h3>{user.name}</h3>
-        {location.pathname.includes('/profile') && params.id === user.id && (
+        {location?.pathname.includes('/profile') && (
           <div className='idea__header-options' onClick={handleOpenMenu}>
             <HiOutlineDotsHorizontal />
           </div>
@@ -55,7 +48,7 @@ export default function Idea({
         <p className='idea__footer-date'>{newDate}</p>
         <LikedButton likes={likes} userId={_id} postId={postId} />
       </div>
-      {location.pathname.includes('/profile') && (
+      {location?.pathname.includes('/profile') && (
         <IdeaMenu
           postId={postId}
           openMenu={openMenu}

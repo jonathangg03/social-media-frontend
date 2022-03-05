@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+import { useLocation } from 'react-router-dom'
 import Menu from '../../components/Menu'
 import IdeasList from '../../components/IdeasList'
 import Layout from '../../components/Layout'
@@ -21,6 +22,7 @@ export default function Home() {
   const { token, _id } = useContext(Context)
   const { profile } = useGetProfile({ token })
   const { fetchState, ideas } = useGetIdeas({ id: _id })
+  const location = useLocation()
 
   return (
     <>
@@ -34,7 +36,7 @@ export default function Home() {
             profilePhotoUrl={profile.profilePhotoUrl}
             name={profile.name}
           />
-          <IdeasList ideas={ideas} />
+          <IdeasList ideas={ideas} _id={_id} location={location} />
           <Menu />
         </div>
       </Layout>
