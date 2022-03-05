@@ -9,6 +9,7 @@ import Ellipse1 from '../../../public/Desktop/Ellipse1.png'
 import Ellipse2 from '../../../public/Desktop/Ellipse2.png'
 import useGetIdeas from '../../hooks/useGetIdeas'
 import useGetProfile from '../../hooks/useGetProfile'
+import { useNavigate } from 'react-router-dom'
 import '../../styles/profiles.scss'
 
 const FETCH_STATES = {
@@ -19,9 +20,26 @@ const FETCH_STATES = {
 }
 
 export default function Profile() {
-  const { token, _id } = useContext(Context)
+  const { token, _id, setJwt } = useContext(Context)
   const { profile } = useGetProfile({ token })
   const { fetchState, ideas } = useGetIdeas({ user: _id })
+  const navigate = useNavigate()
+
+  const handleNavigate = (e) => {
+    if (e.target.textContent === 'Editar perfil') {
+      navigate('/profile/edit')
+    }
+
+    if (e.target.textContent === 'Cerrar sesión') {
+      try {
+        localStorage.removeItem('token')
+        setJwt(null)
+        navigate('/')
+      } catch (error) {
+        console.log('Cookie not deleted: ', error.message)
+      }
+    }
+  }
 
   return (
     <>
@@ -32,6 +50,7 @@ export default function Profile() {
           backgroundPicture={profile.coverPhotoUrl}
           name={profile.name}
           description={profile.description}
+          handleNavigate={handleNavigate}
         />
         <IdeasList ideas={ideas} />
         <Menu />

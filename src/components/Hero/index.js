@@ -1,9 +1,8 @@
 import { useState, useContext } from 'react'
 import { HiMenu } from 'react-icons/hi'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import Ellipse1 from '../../../public/Profile/Ellipse1.png'
 import Ellipse2 from '../../../public/Profile/Ellipse2.png'
-import Context from '../../Context/authContext'
 import DefaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import DefaultCoverPhoto from '../../../public/defaultCoverPhoto.jpg'
 import './index.scss'
@@ -12,34 +11,16 @@ export default function Hero({
   profilePicture,
   backgroundPicture,
   name,
-  description
+  description,
+  handleNavigate
 }) {
   const [openMenu, setOpenMenu] = useState(false)
-  const navigate = useNavigate()
   const { id } = useParams()
-  const { setJwt, _id } = useContext(Context)
 
   const handleOpenMenu = (e) => {
     setOpenMenu(!openMenu)
   }
 
-  const handleNavigate = (e) => {
-    if (e.target.textContent === 'Editar perfil') {
-      navigate('/profile/edit')
-    }
-
-    if (e.target.textContent === 'Cerrar sesión') {
-      try {
-        localStorage.removeItem('token')
-        setJwt(null)
-        navigate('/')
-      } catch (error) {
-        console.log('Cookie not deleted: ', error.message)
-      }
-    }
-  }
-
-  // const params = useParams()
   return (
     <div className='hero'>
       <div className='hero__wrapper'>
