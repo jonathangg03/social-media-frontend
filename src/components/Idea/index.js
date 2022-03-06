@@ -23,15 +23,25 @@ export default function Idea({
     <li className='idea'>
       <div className='idea__header'>
         <figure className='idea__header-image'>
-          {user.profilePhotoUrl === undefined && <img src={null} />}
-          {user.profilePhotoUrl === '' && (
-            <img src={defaultProfilePhoto} alt={user.name} />
+          {user.profilePhotoUrl === undefined && (
+            <img src={null} aria-label='profileUnd' />
           )}
-          {user.profilePhotoUrl && user.profilePhotoUrl.length > 0 && (
-            <img src={user.profilePhotoUrl} alt={user.name} />
+          {user.profilePhotoUrl === '' && (
+            <img
+              src={defaultProfilePhoto}
+              alt={user?.name}
+              aria-label='profileEmp'
+            />
+          )}
+          {user.profilePhotoUrl && user?.profilePhotoUrl.length > 0 && (
+            <img
+              src={user?.profilePhotoUrl}
+              alt={user?.name}
+              aria-label='profile'
+            />
           )}
         </figure>
-        <h3>{user.name}</h3>
+        <h3>{user?.name}</h3>
         {location?.pathname.includes('/profile') && (
           <div className='idea__header-options' onClick={handleOpenMenu}>
             <HiOutlineDotsHorizontal />
@@ -46,7 +56,7 @@ export default function Idea({
       )}
       <div className='idea__footer'>
         <p className='idea__footer-date'>{newDate}</p>
-        <LikedButton likes={likes} userId={userId} postId={postId} />
+        <LikedButton likes={likes || 0} userId={userId} postId={postId} />
       </div>
       {location?.pathname.includes('/profile') && (
         <IdeaMenu
