@@ -1,17 +1,16 @@
 import { useNavigate } from 'react-router-dom'
 import './index.scss'
 
-export default function IdeaMenu({ postId, openMenu, handleOpenMenu }) {
-  const navigate = useNavigate()
-
-  const handleOpenModal = () => {
-    navigate(`/delete/${postId}`)
-  }
-
+export default function IdeaMenu({
+  postId,
+  openMenu,
+  handleOpenMenu,
+  handleNavigate
+}) {
   return (
     <section className={`idea__menu ${openMenu && 'show-menu'}`}>
       <section>
-        <button onClick={handleOpenModal}>Eliminar</button>
+        <button onClick={(e) => handleNavigate(e, { postId })}>Eliminar</button>
       </section>
       <button type='button' onClick={handleOpenMenu}>
         Cerrar menú

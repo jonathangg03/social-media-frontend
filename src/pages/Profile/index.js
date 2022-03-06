@@ -28,7 +28,7 @@ export default function Profile() {
   const { openMenu, handleOpenMenu } = useOpenMenu()
   const location = useLocation()
 
-  const handleNavigate = (e) => {
+  const handleNavigate = (e, { postId }) => {
     if (e.target.textContent === 'Editar perfil') {
       navigate('/profile/edit')
     }
@@ -41,6 +41,10 @@ export default function Profile() {
       } catch (error) {
         console.log('Cookie not deleted: ', error.message)
       }
+    }
+
+    if (e.target.textContent === 'Eliminar') {
+      navigate(`/delete/${postId}`)
     }
   }
 
@@ -58,7 +62,12 @@ export default function Profile() {
           handleOpenMenu={handleOpenMenu}
           _id={_id}
         />
-        <IdeasList ideas={ideas} location={location} _id={_id} />
+        <IdeasList
+          ideas={ideas}
+          location={location}
+          _id={_id}
+          handleNavigate={handleNavigate}
+        />
         <Menu />
         <img src={Ellipse1} className='profile__ellipsed a' />
         <img src={Ellipse2} className='profile__ellipsed b' />

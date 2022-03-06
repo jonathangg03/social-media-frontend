@@ -3,6 +3,7 @@ import defaultProfilePhoto from '../../../public/defaultProfilePhoto.jpg'
 import useTimeAgo from '../../hooks/useTimeAgo'
 import LikedButton from '../LikedButton'
 import IdeaMenu from '../IdeaMenu'
+import useOpenMenu from '../../hooks/useOpenMenu'
 import './index.scss'
 
 export default function Idea({
@@ -12,12 +13,12 @@ export default function Idea({
   user,
   imageUrl,
   _id: postId,
-  handleOpenMenu,
-  openMenu,
   userId,
-  location
+  location,
+  handleNavigate
 }) {
   const newDate = useTimeAgo(date)
+  const { openMenu, handleOpenMenu } = useOpenMenu()
 
   return (
     <li className='idea'>
@@ -63,6 +64,7 @@ export default function Idea({
           postId={postId}
           openMenu={openMenu}
           handleOpenMenu={handleOpenMenu}
+          handleNavigate={handleNavigate}
         />
       )}
     </li>
