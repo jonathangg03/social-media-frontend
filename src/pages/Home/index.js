@@ -36,7 +36,7 @@ export default function Home() {
             profilePhotoUrl={profile.profilePhotoUrl}
             name={profile.name}
           />
-          <IdeasList ideas={ideas} _id={_id} location={location} />
+          <IdeasList ideas={ideas} userId={_id} location={location} />
           <Menu />
         </div>
       </Layout>

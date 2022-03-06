@@ -14,7 +14,7 @@ export default function Idea({
   _id: postId,
   handleOpenMenu,
   openMenu,
-  _id,
+  userId,
   location
 }) {
   const newDate = useTimeAgo(date)
@@ -46,7 +46,7 @@ export default function Idea({
       )}
       <div className='idea__footer'>
         <p className='idea__footer-date'>{newDate}</p>
-        <LikedButton likes={likes} userId={_id} postId={postId} />
+        <LikedButton likes={likes} userId={userId} postId={postId} />
       </div>
       {location?.pathname.includes('/profile') && (
         <IdeaMenu

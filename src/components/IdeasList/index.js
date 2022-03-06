@@ -5,7 +5,7 @@ export default function IdeaList({
   ideas,
   openMenu,
   handleOpenMenu,
-  _id,
+  userId,
   location
 }) {
   if (ideas === null) {
@@ -27,7 +27,7 @@ export default function IdeaList({
             {...idea}
             openMenu={openMenu}
             handleOpenMenu={handleOpenMenu}
-            _id={_id}
+            userId={userId}
             location={location}
           />
         )
