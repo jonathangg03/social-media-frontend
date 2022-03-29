@@ -12,8 +12,8 @@ export default function Idea({
   likes,
   user,
   imageUrl,
+  userId, //user that gives like if it does
   _id: postId,
-  userId,
   location,
   handleNavigate
 }) {

@@ -8,6 +8,7 @@ export default function LikedButton({ likes, userId, postId }) {
   const [likesPost, setLikesPost] = useState(likes.length)
 
   useEffect(() => {
+    console.log(userId)
     if (userId && likes.includes(userId)) {
       setLiked(true)
     } else {

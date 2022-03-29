@@ -37,7 +37,7 @@ export default function Liked() {
             profilePhotoUrl={profile.profilePhotoUrl}
             name={profile.name}
           />
-          <IdeasList ideas={ideas} _id={_id} location={location} />
+          <IdeasList ideas={ideas} location={location} userId={_id} />
           <Menu />
         </div>
       </Layout>
