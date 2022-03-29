@@ -8,7 +8,6 @@ export default function LikedButton({ likes, userId, postId }) {
   const [likesPost, setLikesPost] = useState(likes.length)
 
   useEffect(() => {
-    console.log(userId)
     if (userId && likes.includes(userId)) {
       setLiked(true)
     } else {
@@ -31,6 +30,7 @@ export default function LikedButton({ likes, userId, postId }) {
       <button
         onClick={handleClickLike}
         className={`idea__footer-like ${liked ? 'like' : ''}`}
+        aria-label='like'
       >
         {liked ? <HiHeart /> : <HiOutlineHeart />}
       </button>
