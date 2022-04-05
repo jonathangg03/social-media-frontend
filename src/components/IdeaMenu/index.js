@@ -9,7 +9,7 @@ export default function IdeaMenu({
   return (
     <section className={`idea__menu ${openMenu && 'show-menu'}`}>
       <section>
-        <button onClick={(e) => handleNavigate(e, { postId })}>Eliminar</button>
+        <button onClick={(e) => handleNavigate(e, postId)}>Eliminar</button>
       </section>
       <button type='button' onClick={handleOpenMenu}>
         Cerrar menú

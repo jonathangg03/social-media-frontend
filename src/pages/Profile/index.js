@@ -28,7 +28,7 @@ export default function Profile() {
   const { openMenu, handleOpenMenu } = useOpenMenu()
   const location = useLocation()
 
-  const handleNavigate = (e, { postId }) => {
+  const handleNavigate = (e, postId) => {
     if (e.target.textContent === 'Editar perfil') {
       navigate('/profile/edit')
     }
