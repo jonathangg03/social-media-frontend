@@ -40,9 +40,6 @@ module.exports = (env) => {
         template: path.join(__dirname, '/public/index.html'),
         favicon: './public/Icon.png'
       }),
-      new Dotenv({
-        path: `./.env${env.file ? `.${env.file}` : ''}`
-      }),
       new WebpackPwaManifestPlugin({
         name: 'Miriio - Un lugar para compartir tus ideas',
         short_name: 'Miriio',
