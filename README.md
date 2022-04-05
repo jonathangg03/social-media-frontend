@@ -1,7 +1,9 @@
-# Miriio
+# Miriio - Red social.
 
-Miriio es una pequeña red social y PWA con la que los usuarios podrán compartir
-ideas e indicar cuáles les han gustado.
+Miriio es una pequeña red social y PWA para que los usuarios compartan las ideas
+que desean. Puedes ver la aplicación [aquí](https://miriio.vercel.app/ 'aquí').
+
+[![Miriio](https://dav-dev.com/assets/projects/miriio.jpg 'Miriio')](https://dav-dev.com/assets/projects/miriio.jpg 'Miriio')
 
 ## Backend
 
@@ -45,3 +47,16 @@ El backend de este sitio lo puedes ver en este
 - MongoDB.
 - Vercel.
 - Wepack PWA Manifest y Workbox Webpack Plugin para la PWA.
+
+## Correr aplicación en local
+
+- Debes clonar este repositorio.
+- Abrir una terminal e ingresar a la carpeta creada.
+- Instalar las dependencias con el comando "npm install".
+- Las variables de entorno de desarrollo están en el archivo ".env.development",
+  ahí tendremos la dirección de la API REST corriendo en local, y el entorno en
+  el que estamos, "development" en nuestro caso.
+- Iniciar el proyecto con el comando "npm run dev".
+- Tenemos que tener el backend corriendo en el puerto 3001 (o el que hayamos
+  definido en las variables de entorno), para ello, ver el
+  [repositorio](https://github.com/jonathangg03/social-media-backend 'repositorio').
