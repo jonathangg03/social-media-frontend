@@ -1,1 +1,1 @@
-export const BACKEND_URI = process.env.REACT_APP_API_URL
+export const BACKEND_URI = 'https://miriio-backend.herokuapp.com'
