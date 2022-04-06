@@ -2,17 +2,9 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackPwaManifestPlugin = require('webpack-pwa-manifest')
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
-const webpack = require('webpack')
-const dotenv = require('dotenv')
+const Dotenv = require('dotenv-webpack')
 
-const env = dotenv.config().parsed
-
-const envKeys = Object.keys(env).reduce((prev, next) => {
-  prev[`process.env.${next}`] = JSON.stringify(env[next])
-  return prev
-}, {})
-
-module.exports = () => {
+module.exports = (env) => {
   return {
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -44,10 +36,12 @@ module.exports = () => {
       ]
     },
     plugins: [
-      new webpack.DefinePlugin(envKeys),
       new HtmlWebpackPlugin({
         template: path.join(__dirname, '/public/index.html'),
         favicon: './public/Icon.png'
+      }),
+      new Dotenv({
+        path: `./.env${env.file ? `.${env.file}` : ''}`
       }),
       new WebpackPwaManifestPlugin({
         name: 'Miriio - Un lugar para compartir tus ideas',
