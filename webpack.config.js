@@ -2,6 +2,15 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackPwaManifestPlugin = require('webpack-pwa-manifest')
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
+const webpack = require('webpack')
+const dotenv = require('dotenv')
+
+const env = dotenv.config().parsed
+
+const envKeys = Object.keys(env).reduce((prev, next) => {
+  prev[`process.env.${next}`] = JSON.stringify(env[next])
+  return prev
+}, {})
 
 module.exports = () => {
   return {
@@ -35,6 +44,7 @@ module.exports = () => {
       ]
     },
     plugins: [
+      new webpack.DefinePlugin(envKeys),
       new HtmlWebpackPlugin({
         template: path.join(__dirname, '/public/index.html'),
         favicon: './public/Icon.png'
