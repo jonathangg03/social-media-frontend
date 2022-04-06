@@ -4,7 +4,7 @@
   "description": "A social media proyect in React with Webpack",
   "main": "./src/index.js",
   "scripts": {
-    "build": "webpack --mode=production --env.ENVIRONMENT=production",
+    "build": "webpack --mode=production",
     "dev": "webpack serve --config ./webpack.config.dev.js --mode=development --env file=development",
     "test": "jest --env=jsdom --watch",
     "test:coverage": "jest --env=jsdom --coverage"
