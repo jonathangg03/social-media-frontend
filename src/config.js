@@ -1,1 +1,1 @@
-export const BACKEND_URI = 'https://miriio-backend.herokuapp.com'
+export const BACKEND_URI = 'https://social-media-backend-qenx.onrender.com'
