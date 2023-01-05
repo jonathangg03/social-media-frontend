@@ -52,7 +52,6 @@ export default function Profile() {
     <>
       <Head title='Perfil' desc='Perfil del usuario.' />
       <div className='profile'>
-        {console.log(profile)}
         <Hero
           profilePicture={profile.profilePhotoUrl}
           backgroundPicture={profile.coverPhotoUrl}
