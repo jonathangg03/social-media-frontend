@@ -42,8 +42,6 @@ export default function useGetIdeas({ id, user, liked }) {
           setFetchState(FETCH_STATES.LOADING)
           const ideas = await getFollowedIdeas({ id })
 
-          console.log(ideas.length)
-
           if (ideas.length === 0) {
             setIdeas(false)
           } else {

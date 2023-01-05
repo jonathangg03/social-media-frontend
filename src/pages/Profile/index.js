@@ -52,6 +52,7 @@ export default function Profile() {
     <>
       <Head title='Perfil' desc='Perfil del usuario.' />
       <div className='profile'>
+        {console.log(profile)}
         <Hero
           profilePicture={profile.profilePhotoUrl}
           backgroundPicture={profile.coverPhotoUrl}
@@ -66,6 +67,7 @@ export default function Profile() {
           ideas={ideas}
           location={location}
           _id={_id}
+          userId={profile._id}
           handleNavigate={handleNavigate}
         />
         <Menu />
