@@ -66,7 +66,7 @@ export default function Profile() {
           ideas={ideas}
           location={location}
           _id={_id}
-          userId={profile._id}
+          userId={_id}
           handleNavigate={handleNavigate}
         />
         <Menu />
