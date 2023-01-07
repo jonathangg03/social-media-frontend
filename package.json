@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "build": "webpack --mode=production --env=production",
-    "dev": "webpack serve --config ./webpack.config.dev.js --mode=development --env file=development",
+    "dev": "webpack serve --config ./webpack.config.dev.js --mode=development",
     "test": "jest --env=jsdom --watch",
     "test:coverage": "jest --env=jsdom --coverage"
   },

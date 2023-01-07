@@ -1,8 +1,7 @@
 import axios from 'axios'
-import { BACKEND_URI } from '../config'
 
 export default async function getFollowedIdeas({ id }) {
-  const response = await axios.get(`${BACKEND_URI}/post?userId=${id}`)
+  const response = await axios.get(`${process.env.API_URL}/post?userId=${id}`)
 
   return response.data.body
 }

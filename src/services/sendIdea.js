@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { BACKEND_URI } from '../config'
 
 export default async function sendIdea({ id, content, file }) {
   const fd = new FormData()
@@ -7,5 +6,5 @@ export default async function sendIdea({ id, content, file }) {
   if (file) {
     fd.append('postImage', file)
   }
-  await axios.post(`${BACKEND_URI}/post/${id}`, fd)
+  await axios.post(`${process.env.API_URL}/post/${id}`, fd)
 }
