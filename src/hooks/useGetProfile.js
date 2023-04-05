@@ -12,9 +12,10 @@ export default function useGetProfile({ token, id }) {
 
   useEffect(async () => {
     if (token) {
-      const profile = await getProfile({ token: token })
+      const profile = await getProfile({ token })
       setProfile(profile)
     }
+
     if (id) {
       const profile = await getUser({ id })
       setProfile(profile)

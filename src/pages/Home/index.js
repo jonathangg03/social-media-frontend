@@ -31,6 +31,7 @@ export default function Home() {
         desc='Página que se mostrará cuando la persona haya completado el ingreso.'
       />
       <Layout>
+        {'error' in profile && <p>{profile.message}</p>}
         <div className='Home'>
           <ProfilePhoto
             profilePhotoUrl={profile.profilePhotoUrl}

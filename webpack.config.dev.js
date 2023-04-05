@@ -37,7 +37,9 @@ module.exports = {
       template: path.join(__dirname, '/public/index.html'),
       favicon: './public/Icon.png'
     }),
-    new Dotenv()
+    new Dotenv({
+      path: './.env.dev'
+    })
   ],
   devServer: {
     port: 3000,
