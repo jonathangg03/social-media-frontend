@@ -9,6 +9,7 @@ import Context from '../../Context/authContext'
 import useGetProfile from '../../hooks/useGetProfile'
 import useGetIdeas from '../../hooks/useGetIdeas'
 import ProfilePhoto from '../../components/ProfilePhoto'
+import ErrorMessage from '../../components/ErrorMessage'
 import './index.scss'
 
 const FETCH_STATES = {
@@ -31,7 +32,7 @@ export default function Home() {
         desc='Página que se mostrará cuando la persona haya completado el ingreso.'
       />
       <Layout>
-        {'error' in profile && <p>{profile.message}</p>}
+        {'error' in profile && <ErrorMessage message={profile.message} />}
         <div className='Home'>
           <ProfilePhoto
             profilePhotoUrl={profile.profilePhotoUrl}
