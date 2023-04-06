@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import getFollowedIdeas from '../services/getFollowedIdeas'
 import getIdeas from '../services/getIdeas'
 import getLikedIdeas from '../services/getLikedIdeas'
+import Context from '../Context/authContext'
 
 const FETCH_STATES = {
   ERROR: -1,
@@ -11,7 +12,7 @@ const FETCH_STATES = {
 }
 
 export default function useGetIdeas({ id, user, liked }) {
-  const [fetchState, setFetchState] = useState(FETCH_STATES.LOADING)
+  const { setFetchState } = useContext(Context)
   const [ideas, setIdeas] = useState([])
 
   useEffect(async () => {
@@ -57,7 +58,6 @@ export default function useGetIdeas({ id, user, liked }) {
   }, [id, liked, user])
 
   return {
-    fetchState,
     ideas
   }
 }

@@ -4,9 +4,17 @@ import getProfile from '../services/getProfile'
 
 const Context = createContext({})
 
+const FETCH_STATES = {
+  ERROR: -1,
+  INITIAL: 0,
+  LOADING: 1,
+  COMPLETE: 2
+}
+
 export function AuthContextProvider({ children }) {
   const [jwt, setJwt] = useState(() => getStorage({ name: 'token' } || null))
   const [profile, setProfile] = useState({})
+  const [fetchState, setFetchState] = useState(FETCH_STATES.INITIAL)
 
   useEffect(async () => {
     if (jwt) {
@@ -22,7 +30,9 @@ export function AuthContextProvider({ children }) {
       value={{
         token: jwt,
         setJwt,
-        _id
+        _id,
+        fetchState,
+        setFetchState
       }}
     >
       {children}

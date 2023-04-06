@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom'
 import Menu from '../../components/Menu'
 import IdeasList from '../../components/IdeasList'
 import Layout from '../../components/Layout'
-import Spinner from '../../components/Spinner'
 import Head from '../../components/Head'
 import Context from '../../Context/authContext'
 import useGetProfile from '../../hooks/useGetProfile'
@@ -12,17 +11,10 @@ import ProfilePhoto from '../../components/ProfilePhoto'
 import ErrorMessage from '../../components/ErrorMessage'
 import './index.scss'
 
-const FETCH_STATES = {
-  ERROR: -1,
-  INITIAL: 0,
-  LOADING: 1,
-  COMPLETE: 2
-}
-
 export default function Home() {
   const { token, _id } = useContext(Context)
   const { profile } = useGetProfile({ token })
-  const { fetchState, ideas } = useGetIdeas({ id: _id })
+  const { ideas } = useGetIdeas({ id: _id })
   const location = useLocation()
 
   return (
@@ -42,7 +34,6 @@ export default function Home() {
           <Menu />
         </div>
       </Layout>
-      {fetchState === FETCH_STATES.LOADING && <Spinner />}
     </>
   )
 }
