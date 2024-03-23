@@ -58,28 +58,28 @@ module.exports = {
           purpose: 'any'
         }
       ]
-    }),
-    new WorkboxWebpackPlugin.GenerateSW({
-      maximumFileSizeToCacheInBytes: 5000000,
-      runtimeCaching: [
-        {
-          urlPattern: new RegExp(
-            'https://(res.cloudinary.com|images.unsplash.com)'
-          ),
-          handler: 'CacheFirst',
-          options: {
-            cacheName: 'images'
-          }
-        },
-        {
-          urlPattern: new RegExp('https://miriio.vercel.app/'),
-          handler: 'NetworkFirst',
-          options: {
-            cacheName: 'api'
-          }
-        }
-      ]
     })
+    // new WorkboxWebpackPlugin.GenerateSW({
+    //   maximumFileSizeToCacheInBytes: 5000000,
+    //   runtimeCaching: [
+    //     {
+    //       urlPattern: new RegExp(
+    //         'https://(res.cloudinary.com|images.unsplash.com)'
+    //       ),
+    //       handler: 'CacheFirst',
+    //       options: {
+    //         cacheName: 'images'
+    //       }
+    //     },
+    //     {
+    //       urlPattern: new RegExp('https://miriio.vercel.app/'),
+    //       handler: 'NetworkFirst',
+    //       options: {
+    //         cacheName: 'api'
+    //       }
+    //     }
+    //   ]
+    // })
   ],
   devServer: {
     port: 3000,
