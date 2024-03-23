@@ -45,7 +45,7 @@ export default function Main() {
           <h1>Un lugar para expressar tus ideas</h1>
         </header>
         <section className='main__buttons'>
-          <button onClick={onOpenSignUpModal}>Registrarm22e</button>
+          <button onClick={onOpenSignUpModal}>Registrarme</button>
           <button onClick={onOpenSignInModal}>Iniciar sesión</button>
         </section>
         <img src={Ellipse1} className='elipse a' />
