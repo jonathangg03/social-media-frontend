@@ -1,8 +1,8 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackPwaManifestPlugin = require('webpack-pwa-manifest')
-// const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
-// const Dotenv = require('dotenv-webpack')
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   output: {
@@ -39,7 +39,9 @@ module.exports = {
       template: path.join(__dirname, '/public/index.html'),
       favicon: './public/Icon.png'
     }),
-    // new Dotenv(),
+    new Dotenv({
+      path: './.env'
+    }),
     new WebpackPwaManifestPlugin({
       name: 'Miriio - Un lugar para compartir tus ideas',
       short_name: 'Miriio',
@@ -58,28 +60,28 @@ module.exports = {
           purpose: 'any'
         }
       ]
+    }),
+    new WorkboxWebpackPlugin.GenerateSW({
+      maximumFileSizeToCacheInBytes: 5000000,
+      runtimeCaching: [
+        {
+          urlPattern: new RegExp(
+            'https://(res.cloudinary.com|images.unsplash.com)'
+          ),
+          handler: 'CacheFirst',
+          options: {
+            cacheName: 'images'
+          }
+        },
+        {
+          urlPattern: new RegExp('https://miriio.vercel.app/'),
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'api'
+          }
+        }
+      ]
     })
-    // new WorkboxWebpackPlugin.GenerateSW({
-    //   maximumFileSizeToCacheInBytes: 5000000,
-    //   runtimeCaching: [
-    //     {
-    //       urlPattern: new RegExp(
-    //         'https://(res.cloudinary.com|images.unsplash.com)'
-    //       ),
-    //       handler: 'CacheFirst',
-    //       options: {
-    //         cacheName: 'images'
-    //       }
-    //     },
-    //     {
-    //       urlPattern: new RegExp('https://miriio.vercel.app/'),
-    //       handler: 'NetworkFirst',
-    //       options: {
-    //         cacheName: 'api'
-    //       }
-    //     }
-    //   ]
-    // })
   ],
   devServer: {
     port: 3000,
