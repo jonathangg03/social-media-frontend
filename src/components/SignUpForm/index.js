@@ -22,7 +22,7 @@ export default function SignUpForm({ onClose, onOpenOtherModal }) {
           await signUp({ name, email, password }) // MAKE SIGNUP
           const jwt = await signIn({ email, password }) // MAKE SIGNIN, TO STAY LOGGED ONCE YOU SIGNED UP
           setStorage({ name: 'token', value: jwt }) // SAVE TOKEN ON LOCAL STORAGE
-          setJwt(jwt) //SET TOKEN ON CONTEXT
+          setJwt(jwt) // SET TOKEN ON CONTEXT
           navigate('/home')
         } catch (error) {
           console.log(error.message)
