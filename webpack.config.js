@@ -1,8 +1,8 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const WebpackPwaManifestPlugin = require('webpack-pwa-manifest')
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
+// const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
+// const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   output: {
@@ -39,7 +39,7 @@ module.exports = {
       template: path.join(__dirname, '/public/index.html'),
       favicon: './public/Icon.png'
     }),
-    new Dotenv(),
+    // new Dotenv(),
     new WebpackPwaManifestPlugin({
       name: 'Miriio - Un lugar para compartir tus ideas',
       short_name: 'Miriio',
