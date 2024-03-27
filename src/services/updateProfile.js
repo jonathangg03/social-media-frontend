@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { API_URL } from '../config'
 
 async function updateProfile({ profile, event }) {
   const fd = new FormData()
@@ -6,7 +7,7 @@ async function updateProfile({ profile, event }) {
   fd.append('description', profile.description)
   fd.append('profilePhoto', event.target[0].files[0])
   fd.append('coverPhoto', event.target[1].files[0])
-  await axios.patch(`${process.env.API_URL}/user/${profile._id}`, fd)
+  await axios.patch(`${API_URL}/user/${profile._id}`, fd)
 }
 
 export default updateProfile
